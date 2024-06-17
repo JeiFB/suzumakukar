@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "307631848175",
+    "project_id": "suzumakukar-780ff",
+    "storage_bucket": "suzumakukar-780ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307631848175:android:63cb103f730308a979391a",
+        "android_client_info": {
+          "package_name": "com.example.suzumakukar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwFFhld2KYtxUUgQdlzvxxshk4s-TDVxo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
