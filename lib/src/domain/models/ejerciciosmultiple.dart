@@ -16,7 +16,7 @@ class EjerciciosMultiple {
   String descripcion;
   List<dynamic> opciones;
   String respuesta;
-  // String img;
+  String img;
 
   EjerciciosMultiple({
     this.id = '',
@@ -24,7 +24,7 @@ class EjerciciosMultiple {
     this.descripcion = '',
     this.respuesta = '',
     this.opciones = const [],
-    // required this.img,
+    this.img = '',
   });
 
   factory EjerciciosMultiple.fromJson(Map<String, dynamic> json) =>
@@ -35,7 +35,7 @@ class EjerciciosMultiple {
         respuesta: json["respuesta"] ?? '',
         opciones: List<dynamic>.from(
             (json["opciones"] ?? []).map((x) => x.toString())),
-        // img: json["img"],
+        img: json["img"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,6 +44,6 @@ class EjerciciosMultiple {
         "descripcion": descripcion,
         "opciones": opciones,
         "respuesta": respuesta,
-        // "img": img,
+        "img": img,
       };
 }

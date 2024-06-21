@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:suzumakukar/src/domain/models/ejerciciosmultiple.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/ejercicios_desafios_usecases.dart';
 import 'package:suzumakukar/src/domain/utils/resource.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_desafio.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_ejercicio.dart';
 
 class EjercicioDesafioViewModel extends ChangeNotifier {
   final EjerciciosDesafioUseCases _ejerciciosDesafioUseCases;

@@ -44,7 +44,8 @@ dependencies:
   cloud_firestore: ^4.15.5
   smooth_page_indicator: ^1.1.0
   image_picker: ^1.1.2
-
+  firebase_storage: ^11.2.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

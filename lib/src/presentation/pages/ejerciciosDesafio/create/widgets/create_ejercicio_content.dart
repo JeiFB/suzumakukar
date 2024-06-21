@@ -41,6 +41,42 @@ class CreateEjercicioContent extends StatelessWidget {
             }),
           ],
         ),
+        const SizedBox(height: 15),
+        GestureDetector(
+            onTap: () {
+              vm.pickerImage();
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                height: 130,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(12)),
+                child: vm.imageFile != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.file(
+                          vm.imageFile!,
+                          fit: BoxFit
+                              .cover, // La imagen cubrirá todo el contenedor
+                          width: double.infinity,
+                          height: double.infinity,
+                        ),
+                      )
+                    : const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add_circle,
+                            color: Colors.blue,
+                          ),
+                          Text('Agregar imagen')
+                        ],
+                      ),
+              ),
+            )),
         const SizedBox(height: 20),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),

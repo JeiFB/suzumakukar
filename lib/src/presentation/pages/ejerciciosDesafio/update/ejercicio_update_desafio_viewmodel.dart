@@ -47,9 +47,16 @@ class EjercicioUpdateDesafioViewModel extends ChangeNotifier {
     if (_state.isValid()) {
       _response = Loading();
       notifyListeners();
-      _response = await _ejerciciosDesafioUseCases.updateEjercicioDesafioUseCase
-          .launch(idDesafio, _state.toEjercicio());
-      notifyListeners();
+      if (_imageFile == null) {
+        _response = await _ejerciciosDesafioUseCases
+            .updateEjercicioDesafioUseCase
+            .launch(idDesafio, _state.toEjercicio());
+        notifyListeners();
+      } else {
+        _response = await _ejerciciosDesafioUseCases
+            .ejerciciosDesafiosImageUsecase
+            .launch(idDesafio, _state.toEjercicio(), _imageFile!);
+      }
     } else {
       notifyListeners();
     }

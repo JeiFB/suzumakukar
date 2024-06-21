@@ -7,6 +7,7 @@ class CreateEjercicioDesafioState {
   ValidationItem descripcion;
   ValidationItem respuesta;
   List<ValidationItem> opciones;
+  String img;
   CreateEjercicioDesafioState(
       {this.id = '',
       this.ejercicio = const ValidationItem(),
@@ -17,10 +18,12 @@ class CreateEjercicioDesafioState {
         ValidationItem(value: ''),
         ValidationItem(value: ''),
         ValidationItem(value: ''),
-      ]});
+      ],
+      this.img = ''});
 
   toEjercicio() => EjerciciosMultiple(
       id: id,
+      img: img,
       ejercicio: ejercicio.value,
       descripcion: descripcion.value,
       respuesta: respuesta.value,
@@ -36,16 +39,16 @@ class CreateEjercicioDesafioState {
     return true;
   }
 
-  CreateEjercicioDesafioState copyWith({
-    ValidationItem? ejercicio,
-    ValidationItem? descripcion,
-    ValidationItem? respuesta,
-    List<ValidationItem>? opciones,
-  }) =>
+  CreateEjercicioDesafioState copyWith(
+          {ValidationItem? ejercicio,
+          ValidationItem? descripcion,
+          ValidationItem? respuesta,
+          List<ValidationItem>? opciones,
+          String? img}) =>
       CreateEjercicioDesafioState(
-        ejercicio: ejercicio ?? this.ejercicio,
-        descripcion: descripcion ?? this.descripcion,
-        respuesta: respuesta ?? this.respuesta,
-        opciones: opciones ?? this.opciones,
-      );
+          ejercicio: ejercicio ?? this.ejercicio,
+          descripcion: descripcion ?? this.descripcion,
+          respuesta: respuesta ?? this.respuesta,
+          opciones: opciones ?? this.opciones,
+          img: img ?? this.img);
 }

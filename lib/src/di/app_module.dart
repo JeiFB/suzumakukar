@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:suzumakukar/src/data/repository/auth_repository_impl.dart';
 import 'package:suzumakukar/src/data/repository/cursos_repository_impl.dart';
@@ -17,7 +18,6 @@ import 'package:suzumakukar/src/domain/repository/lectura_respository.dart';
 import 'package:suzumakukar/src/domain/repository/test_repository.dart';
 import 'package:suzumakukar/src/domain/repository/user_respository.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/auth_usecases.dart';
-import 'package:suzumakukar/src/domain/use_cases/auth/isadmin_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/login_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/logout_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/register_usecase.dart';
@@ -39,7 +39,9 @@ import 'package:suzumakukar/src/domain/use_cases/desafios/delete_desafios_usecas
 import 'package:suzumakukar/src/domain/use_cases/desafios/desafios_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/desafios/get_desafios_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/create_ejercicio_desafio_usecase.dart';
+import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/create_ejercicio_img_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/delete_ejercicio_desafio_usecase.dart';
+import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/ejercicios_desafios_image_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/ejercicios_desafios_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/get_ejercicio_desafio_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/update_ejercicio_desafio_usecase.dart';
@@ -70,21 +72,32 @@ abstract class AppModule {
   @injectable
   FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
 
+  @injectable
+  FirebaseStorage get firebaseStorage => FirebaseStorage.instance;
+
   @Named('users')
   @injectable
   CollectionReference get userRef => firebaseFirestore.collection('users');
 
   @Named('cursos')
+  @injectable
   CollectionReference get cursosRef => firebaseFirestore.collection('Cursos');
 
   @Named('desafios')
+  @injectable
   CollectionReference get desafiosRef =>
       firebaseFirestore.collection('desafios');
 
+  @Named('desafios')
+  @injectable
+  Reference get desafioStorageRef => firebaseStorage.ref().child('desafios');
+
   @Named('test')
+  @injectable
   CollectionReference get testRef => firebaseFirestore.collection('test');
 
   @Named('lectura')
+  @injectable
   CollectionReference get lecturaRef => firebaseFirestore.collection('lectura');
 
   @injectable
@@ -99,7 +112,7 @@ abstract class AppModule {
       DesafiosRepositoryImpl(desafiosRef);
 
   EjerciciosDesafiosRepository get ejerciciosDesafiosRepository =>
-      EjerciciosDesafioRepositoryImpl(desafiosRef);
+      EjerciciosDesafioRepositoryImpl(desafiosRef, desafioStorageRef);
 
   TestRepositoy get testRespository => TestRepositoryImpl(testRef);
   EjerciciosTestRepository get ejerciciosTestRepository =>
@@ -140,14 +153,19 @@ abstract class AppModule {
       );
 
   EjerciciosDesafioUseCases get ejerciciosUseCases => EjerciciosDesafioUseCases(
-      createEjercicioDesafio:
-          CreateEjercicioDesafioUseCase(ejerciciosDesafiosRepository),
-      getEjercicioDesafio:
-          GetEjercicioDesafioUseCase(ejerciciosDesafiosRepository),
-      deleteEjercicioDesafio:
-          DeleteEjercicioDesafioUseCase(ejerciciosDesafiosRepository),
-      updateEjercicioDesafioUseCase:
-          UpdateEjercicioDesafioUseCase(ejerciciosDesafiosRepository));
+        createEjercicioDesafio:
+            CreateEjercicioDesafioUseCase(ejerciciosDesafiosRepository),
+        createEjercicioImgUsecase:
+            CreateEjercicioImgUsecase(ejerciciosDesafiosRepository),
+        getEjercicioDesafio:
+            GetEjercicioDesafioUseCase(ejerciciosDesafiosRepository),
+        deleteEjercicioDesafio:
+            DeleteEjercicioDesafioUseCase(ejerciciosDesafiosRepository),
+        updateEjercicioDesafioUseCase:
+            UpdateEjercicioDesafioUseCase(ejerciciosDesafiosRepository),
+        ejerciciosDesafiosImageUsecase:
+            EjerciciosDesafiosImageUsecase(ejerciciosDesafiosRepository),
+      );
 
   TestUseCases get testUseCases => TestUseCases(
       createTest: CreateTestUseCase(testRespository),

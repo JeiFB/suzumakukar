@@ -98,6 +98,28 @@ class _SuzumakukarPageViewBuilderState
                           const SizedBox(
                             height: 10,
                           ),
+                          widget.ejerciciosList[index].img != ''
+                              ? Container(
+                                  height: 260,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.blue),
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image(
+                                      image: NetworkImage(
+                                          widget.ejerciciosList[index].img),
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
+                          const SizedBox(
+                            height: 10,
+                          ),
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text(

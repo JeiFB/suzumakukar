@@ -3,6 +3,7 @@ import 'package:suzumakukar/src/presentation/pages/utils/validation_item.dart';
 
 class EjercicioUpdateDesafioState {
   String id;
+  String img;
   ValidationItem ejercicio;
   ValidationItem descripcion;
   ValidationItem respuesta;
@@ -10,6 +11,7 @@ class EjercicioUpdateDesafioState {
 
   EjercicioUpdateDesafioState(
       {this.id = '',
+      this.img = '',
       this.ejercicio = const ValidationItem(),
       this.descripcion = const ValidationItem(),
       this.respuesta = const ValidationItem(),
@@ -22,6 +24,7 @@ class EjercicioUpdateDesafioState {
 
   toEjercicio() => EjerciciosMultiple(
       id: id,
+      img: img,
       ejercicio: ejercicio.value,
       descripcion: descripcion.value,
       respuesta: respuesta.value,
@@ -41,6 +44,7 @@ class EjercicioUpdateDesafioState {
 
   EjercicioUpdateDesafioState copyWith({
     String? id,
+    String? img,
     ValidationItem? ejercicio,
     ValidationItem? descripcion,
     ValidationItem? respuesta,
@@ -48,6 +52,7 @@ class EjercicioUpdateDesafioState {
   }) =>
       EjercicioUpdateDesafioState(
         id: id ?? this.id,
+        img: img ?? this.img,
         ejercicio: ejercicio ?? this.ejercicio,
         descripcion: descripcion ?? this.descripcion,
         respuesta: respuesta ?? this.respuesta,

@@ -44,7 +44,7 @@ class SuzumakukarEjerciciosContent extends StatelessWidget {
         SuzumakukarProgressBar(themeColor, resultados.progreso),
         const SizedBox(height: 10),
         SizedBox(
-          height: 650,
+          height: 790,
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             child: SuzumakukarPageViewBuilder(

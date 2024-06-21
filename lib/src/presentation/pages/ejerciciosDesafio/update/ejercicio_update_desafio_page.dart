@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:suzumakukar/src/colors/base_color.dart';
 import 'package:suzumakukar/src/domain/models/ejerciciosmultiple.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_appbar.dart';
-import 'package:suzumakukar/src/presentation/pages/ejercicios/update/widgets/ejercicio_update_content.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_response.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/widgets/ejercicio_update_desafio_content.dart';
