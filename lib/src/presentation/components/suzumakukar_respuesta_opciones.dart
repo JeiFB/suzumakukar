@@ -36,7 +36,7 @@ class _SuzumakukarRespuestaOpcionesState
   void didUpdateWidget(SuzumakukarRespuestaOpciones oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.ejerciciosList != widget.ejerciciosList) {
-      print('aleatorio');
+      // print('aleatorio');
       actualizarOpcionesAleatorias();
     }
   }

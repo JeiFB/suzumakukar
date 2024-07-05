@@ -7,9 +7,7 @@ import 'package:suzumakukar/src/colors/base_color.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_button.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_edit_delete_button.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_showmodalbottomsheet.dart';
-import 'package:suzumakukar/src/presentation/pages/cursos/create/create_cursos_page.dart';
 import 'package:suzumakukar/src/presentation/pages/cursos/list/cursos_list_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/rol_user.dart';
 // import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_curso.dart';
 

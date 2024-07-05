@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:suzumakukar/src/data/repository/auth_repository_impl.dart';
+import 'package:suzumakukar/src/data/repository/completed_challenges_repository_impl.dart';
 import 'package:suzumakukar/src/data/repository/cursos_repository_impl.dart';
 import 'package:suzumakukar/src/data/repository/desafios_repository_impl.dart';
 import 'package:suzumakukar/src/data/repository/ejercicios_desafio_repository_impl.dart';
@@ -10,6 +11,7 @@ import 'package:suzumakukar/src/data/repository/lectura_respository_impl.dart';
 import 'package:suzumakukar/src/data/repository/test_repository_impl.dart';
 import 'package:suzumakukar/src/data/repository/user_respository_impl.dart';
 import 'package:suzumakukar/src/di/firebase_service.dart';
+import 'package:suzumakukar/src/domain/repository/completed_challenges_repository.dart';
 import 'package:suzumakukar/src/domain/repository/cursos_respository.dart';
 import 'package:suzumakukar/src/domain/repository/desafios_respository.dart';
 import 'package:suzumakukar/src/domain/repository/ejercicios_desafios_repository.dart';
@@ -23,6 +25,9 @@ import 'package:suzumakukar/src/domain/use_cases/auth/logout_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/register_usecase.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/user_session_usecase.dart';
+import 'package:suzumakukar/src/domain/use_cases/completedChallenges/add_completed_challenge_usecase.dart';
+import 'package:suzumakukar/src/domain/use_cases/completedChallenges/completed_challenge_usecases.dart';
+import 'package:suzumakukar/src/domain/use_cases/completedChallenges/get_completed_challenge_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/cursos/cursos_usescases/create_cursos_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/cursos/cursos_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/cursos/cursos_usescases/delete_curso_usecase.dart';
@@ -58,7 +63,9 @@ import 'package:suzumakukar/src/domain/use_cases/testExam/create_test_usecase.da
 import 'package:suzumakukar/src/domain/use_cases/testExam/delete_test_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/testExam/get_test_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/testExam/test_%20usecases.dart';
+import 'package:suzumakukar/src/domain/use_cases/users/get_all_users_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/users/get_users_usecase.dart';
+import 'package:suzumakukar/src/domain/use_cases/users/update_img_user_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/users/users_usecases.dart';
 
 @module
@@ -78,6 +85,10 @@ abstract class AppModule {
   @Named('users')
   @injectable
   CollectionReference get userRef => firebaseFirestore.collection('users');
+
+  @Named('users')
+  @injectable
+  Reference get usersStorageRef => firebaseStorage.ref().child('users');
 
   @Named('cursos')
   @injectable
@@ -104,7 +115,8 @@ abstract class AppModule {
   AuthRepositoryImpl get authRepository =>
       AuthRepositoryImpl(firebaseAuth, userRef);
 
-  UserRepository get usersRepository => UserRepositoryImpl(userRef);
+  UserRepository get usersRepository =>
+      UserRepositoryImpl(userRef, usersStorageRef);
 
   CursosRepository get cursosRepository => CursosRepositoryImpl(cursosRef);
 
@@ -120,6 +132,9 @@ abstract class AppModule {
 
   LecturaRepository get lecturaRespository => LecturaRepositoryImpl(lecturaRef);
 
+  CompletedchallengesRepository get completeChallengeRepository =>
+      CompletedChallengesRepositoryImpl(userRef);
+
 // casos de usos
   @injectable
   AuthUseCases get authUseCases => AuthUseCases(
@@ -130,8 +145,10 @@ abstract class AppModule {
         // isAdmin: IsAdmin(authRepository)
       );
 
-  UsersUseCases get userUseCase =>
-      UsersUseCases(getUserById: GetUsersUseCase(usersRepository));
+  UsersUseCases get userUseCase => UsersUseCases(
+      getUserById: GetUsersUseCase(usersRepository),
+      getAllUsers: GetAllUsersUsecase(usersRepository),
+      updateImg: UpdateImgUserUsecase(usersRepository));
 
   CursosUseCase get cursosUseCases => CursosUseCase(
         getCursos: GetCursosUseCase(cursosRepository),
@@ -183,4 +200,11 @@ abstract class AppModule {
       createLectura: CreateLecturaUseCase(lecturaRespository),
       deleteLectura: DeleteLecturaUseCase(lecturaRespository),
       getLectura: GetLecturaUseCase(lecturaRespository));
+
+  CompletedChallengeUseCases get completeChallengeUseCases =>
+      CompletedChallengeUseCases(
+          addCompleteChallenge:
+              AddCompletedChallengeUseCase(completeChallengeRepository),
+          getCompleteChallenge:
+              GetCompletedChallengeUseCase(completeChallengeRepository));
 }

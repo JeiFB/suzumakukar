@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:suzumakukar/src/colors/base_color.dart';
+import 'package:suzumakukar/src/domain/models/completedChallenges.dart';
 import 'package:suzumakukar/src/domain/models/desafios.dart';
 import 'package:suzumakukar/src/domain/utils/resource.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_appbar.dart';
@@ -17,48 +18,61 @@ class DesafiosPage extends StatelessWidget {
     Color colorAppBar = COLOR_ORANGE_FOX;
     DesafiosViewModel vm = Provider.of<DesafiosViewModel>(context);
     return Scaffold(
-        appBar:
-            SuzumakukarAppBar(null, 'DESAFIOS', textColor, null, colorAppBar),
-        body: StreamBuilder(
-          stream: vm.getDesafios(),
-          builder: ((context, snapshot) {
-            final response = snapshot.data;
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (!snapshot.hasData) {
-              return const Center(
-                child: Text(
-                  'No hay informacion',
-                  style: TextStyle(color: Colors.white),
-                ),
-              );
-            }
-            if (response is Error) {
-              final data = response as Error;
-              return Center(
-                child: Text('Error: ${data.error}'),
-              );
-            }
-            final desafiosList = response as Success<List<Desafios>>;
-            return GridView.builder(
-                itemCount: desafiosList.data.length,
+      appBar: SuzumakukarAppBar(null, 'DESAFIOS', textColor, null, colorAppBar),
+      body: StreamBuilder(
+        stream: vm.getDesafios(),
+        builder: (context, desafiosSnapshot) {
+          if (desafiosSnapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!desafiosSnapshot.hasData) {
+            return const Center(
+                child: Text('No hay información',
+                    style: TextStyle(color: Colors.white)));
+          }
+          final desafiosResponse = desafiosSnapshot.data;
+          if (desafiosResponse is Error) {
+            return Center(child: Text('Error: $desafiosResponse'));
+          }
+          final desafiosList =
+              (desafiosResponse as Success<List<Desafios>>).data;
+
+          return StreamBuilder(
+            stream: vm.completedChallenges(),
+            builder: (context, completedSnapshot) {
+              if (completedSnapshot.connectionState ==
+                  ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              // if (!completedSnapshot.hasData) {
+              //   return const Center(
+              //       child: Text('No hay información',
+              //           style: TextStyle(color: Colors.white)));
+              // }
+              final completedChallenges =
+                  completedSnapshot.data as List<CompletedChallenges>;
+
+              return GridView.builder(
+                itemCount: desafiosList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2.9,
-                    // crossAxisSpacing: 1.5,
-                    mainAxisExtent: 210),
+                  crossAxisCount: 2,
+                  childAspectRatio: 2.9,
+                  mainAxisExtent: 210,
+                ),
                 itemBuilder: (context, index) {
-                  final desafio = desafiosList.data[index];
-                  return desafiosList.data.isNotEmpty
-                      ? DesafiosPageContent(vm, desafio)
-                      : const Center(
-                          child: Text('No hay elementos'),
-                        );
-                });
-          }),
-        ),
-        // DesafiosResponse(vm),
-        floatingActionButton: const CreateDesafioPage());
+                  final desafio = desafiosList[index];
+                  final isCompleted = completedChallenges
+                      .any((completed) => completed.idDesafio == desafio.id);
+                  final color = isCompleted ? Colors.grey : Colors.orange;
+
+                  return DesafiosPageContent(vm, desafio, color, isCompleted);
+                },
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: const CreateDesafioPage(),
+    );
   }
 }

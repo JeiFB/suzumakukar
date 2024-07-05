@@ -6,7 +6,6 @@ import 'package:suzumakukar/src/presentation/pages/cursos/list/cursos_list_page.
 import 'package:suzumakukar/src/presentation/pages/desafios/list/desafios_page.dart';
 import 'package:suzumakukar/src/presentation/pages/home/home_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/lecturas/list/lecturas_list_page.dart';
-import 'package:suzumakukar/src/presentation/pages/testPage/list/test_list_page.dart';
 import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_page.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/rol_user.dart';
 
@@ -24,9 +23,9 @@ class HomePage extends StatelessWidget {
     final currentTab = [
       CursosListPage(_userData.rol),
       const DesafiosPage(),
-      const TestListPage(),
+      // const TestListPage(),
       LecturaListPage(_userData.rol),
-      ProfileInfoPage(_userData),
+      ProfileInfoPage(_userData, vm),
     ];
     return Scaffold(
       body: currentTab[vm.currentIndex],

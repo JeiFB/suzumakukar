@@ -8,6 +8,7 @@ class UserData {
   String id;
   String name;
   String username;
+  String img;
   bool rol;
   String password;
 
@@ -15,6 +16,7 @@ class UserData {
       {this.id = '',
       this.name = '',
       this.username = '',
+      this.img = '',
       this.password = '',
       this.rol = false});
 
@@ -22,6 +24,7 @@ class UserData {
       id: json["id"] ?? '',
       name: json["name"] ?? '',
       username: json["username"] ?? '',
+      img: json['img'] ?? '',
       password: json["password"] ?? '',
       rol: json["rol"] ?? false);
 
@@ -29,6 +32,7 @@ class UserData {
         "id": id,
         "name": name,
         "username": username,
+        "img": img,
         "rol": rol,
         // "password": password,
       };

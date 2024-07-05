@@ -9,24 +9,42 @@ import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_desafio.dart
 class DesafiosPageContent extends StatelessWidget {
   final Desafios desafios;
   final DesafiosViewModel vm;
-  const DesafiosPageContent(this.vm, this.desafios, {super.key});
+  final Color color;
+  final bool isCompleted;
+  const DesafiosPageContent(
+      this.vm, this.desafios, this.color, this.isCompleted,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
-    Color themeColor = COLOR_ORANGE_FOX;
+    // Color themeColor = COLOR_ORANGE_FOX;
     Color textColor = COLOR_WHITE;
     Color editColor = COLOR_YELLOW_BEE;
     Color deleteColor = COLOR_RED_CARDINAL;
     ObtenerIdDesafio desafio = Provider.of<ObtenerIdDesafio>(context);
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, 'ejerciciosdesafiopage',
-            arguments: desafio.setDesafioSeleccionado(desafios.id));
-      },
-      child: SuzumakukarCard(themeColor, desafios.desafio, textColor,
-          desafios.tema, null, editColor, () {
-        vm.deleteDesafio(desafios.id);
-      }, deleteColor),
+      onTap: !isCompleted
+          ? () {
+              Navigator.pushNamed(
+                context,
+                'ejerciciosdesafiopage',
+                arguments: desafio.setDesafioSeleccionado(desafios.id),
+              );
+              desafio.setDesafioNumber(desafios.desafio);
+            }
+          : null,
+      child: SuzumakukarCard(
+        color,
+        desafios.desafio,
+        textColor,
+        desafios.tema,
+        null,
+        editColor,
+        () {
+          vm.deleteDesafio(desafios.id);
+        },
+        deleteColor,
+      ),
     );
   }
 }

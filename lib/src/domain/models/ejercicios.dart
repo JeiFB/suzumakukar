@@ -14,7 +14,7 @@ class Ejercicios {
   String ejercicio;
   String descripcion;
   String respuesta;
-  // String img;
+  String img;
   List<dynamic> ejecucion;
   // String razonamiento;
 
@@ -24,7 +24,7 @@ class Ejercicios {
     this.descripcion = '',
     this.respuesta = '',
     this.ejecucion = const [],
-    // this.img = "",
+    this.img = "",
     // this.ejecucion = "",
     // this.razonamiento = "",
   });
@@ -36,7 +36,7 @@ class Ejercicios {
         respuesta: json["respuesta"] ?? '',
         ejecucion: List<dynamic>.from(
             (json["ejecucion"] ?? []).map((x) => x.toString())),
-        // img: json["img"],
+        img: json["img"],
         // ejecucion: json["ejecucion"],
         // razonamiento: json["razonamiento"],
       );
@@ -47,7 +47,7 @@ class Ejercicios {
         "descripcion": descripcion,
         "respuesta": respuesta,
         "ejecucion": ejecucion,
-        // "img": img,
+        "img": img,
         // "ejecucion": ejecucion,
         // "razonamiento": razonamiento,
       };

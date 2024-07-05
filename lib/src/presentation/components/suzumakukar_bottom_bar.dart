@@ -26,10 +26,10 @@ class SuzumakukarBottomBar extends StatelessWidget {
             icon: Icon(Icons.emoji_events),
             label: 'Desafios',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.checklist_rtl_sharp),
-            label: 'Test',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.checklist_rtl_sharp),
+          //   label: 'Test',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chrome_reader_mode),
             label: 'Lectura',

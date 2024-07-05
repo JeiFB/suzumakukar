@@ -56,6 +56,7 @@ class EjercicioUpdateDesafioViewModel extends ChangeNotifier {
         _response = await _ejerciciosDesafioUseCases
             .ejerciciosDesafiosImageUsecase
             .launch(idDesafio, _state.toEjercicio(), _imageFile!);
+        notifyListeners();
       }
     } else {
       notifyListeners();

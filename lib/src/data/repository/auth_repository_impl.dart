@@ -43,6 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
       user.password = "";
       user.id = data.user?.uid ?? "";
       await _usersRef.doc(user.id).set(user.toJson());
+      // await _usersRef.doc(user.id).collection('desafioscompletados').add({});
       return Success(data);
     } on FirebaseAuthException catch (e) {
       return error(e.code);
@@ -57,15 +58,15 @@ class AuthRepositoryImpl implements AuthRepository {
     await _firebaseAuth.signOut();
   }
 
-  @override
-  Future<bool> isAdmin(String userId) async {
-    try {
-      DocumentSnapshot userDoc = await _usersRef.doc(userId).get();
-      UserData userData =
-          UserData.fromJson(userDoc.data() as Map<String, dynamic>);
-      return userData.rol;
-    } catch (e) {
-      return false; // Manejar cualquier error que ocurra durante la obtención de datos
-    }
-  }
+  // @override
+  // Future<bool> isAdmin(String userId) async {
+  //   try {
+  //     DocumentSnapshot userDoc = await _usersRef.doc(userId).get();
+  //     UserData userData =
+  //         UserData.fromJson(userDoc.data() as Map<String, dynamic>);
+  //     return userData.rol;
+  //   } catch (e) {
+  //     return false; // Manejar cualquier error que ocurra durante la obtención de datos
+  //   }
+  // }
 }

@@ -63,7 +63,7 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
               respuesta: respuesta,
               ejerciciosList: widget.lista,
               index: widget.index,
-              radioActiveColor: COLOR_YELLOW_BEE,
+              radioActiveColor: COLOR_PURPLE,
               onRespuestaChanged: (nuevaRespuesta) {
                 setState(() {
                   respuesta = nuevaRespuesta;
@@ -102,13 +102,16 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
                       duration: const Duration(microseconds: 750),
                       curve: Curves.linear,
                     )
-                  : (Navigator.popAndPushNamed(context, 'screenresultadopage'));
+                  : widget.multipleOpcion
+                      ? Navigator.popAndPushNamed(
+                          context, 'screenresultadodesafiopage')
+                      : Navigator.popAndPushNamed(
+                          context, 'screenresultadopage');
             } else {
               if (respuesta.isNotEmpty) {
                 if (intentos != 0) {
                   --intentos;
                 }
-
                 if (intentos == 0) {
                   widget.mostrarEjecucion
                       ? setState(() {
@@ -119,8 +122,11 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
                               duration: const Duration(microseconds: 750),
                               curve: Curves.linear,
                             )
-                          : Navigator.popAndPushNamed(
-                              context, 'screenresultadopage');
+                          : widget.multipleOpcion
+                              ? Navigator.popAndPushNamed(
+                                  context, 'screenresultadodesafiopage')
+                              : Navigator.popAndPushNamed(
+                                  context, 'screenresultadopage');
                 } else {
                   setState(() {
                     sw = true;

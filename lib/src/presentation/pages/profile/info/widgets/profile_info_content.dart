@@ -1,113 +1,220 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:suzumakukar/injection.dart';
 import 'package:suzumakukar/main.dart';
 import 'package:suzumakukar/src/colors/base_color.dart';
 import 'package:suzumakukar/src/domain/models/user_data.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/auth_usecases.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_button.dart';
+import 'package:suzumakukar/src/presentation/pages/home/home_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
+import 'dart:io';
 
 class ProfileInfoContent extends StatelessWidget {
-  // final ProfileInfoViewModel vm;
   final UserData user;
-  const ProfileInfoContent(this.user, {super.key});
+  final HomeViewModel vm;
+  final ProfileInfoViewModel vmProfile;
+  final bool rol;
+
+  const ProfileInfoContent(this.user, this.vm, this.vmProfile, this.rol,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
-    ProfileInfoViewModel vm = Provider.of<ProfileInfoViewModel>(context);
-    // IdUser idUser = Provider.of<IdUser>(context);
-    // idUser.setIdUser(user.rol);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Stack(
-              children: [
-                Container(
+      body: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 180,
+                color: COLOR_BLACK_LAEL,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Container(
+                  margin: const EdgeInsets.only(top: 20),
                   width: double.infinity,
-                  height: 180,
-                  color: COLOR_BLACK_LAEL,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 40),
-                    width: double.infinity,
-                    child: Card(
-                      color: COLOR_WHITE,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            const CircleAvatar(
-                              // backgroundImage: AssetImage('assets/avatar.jpg'),
-                              radius: 60,
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              user.name,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                  child: Card(
+                    color: COLOR_WHITE,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: user.img != ""
+                                    ? NetworkImage(user.img)
+                                    : null,
+                                radius: 80,
+                                child: user.img == ""
+                                    ? const Icon(
+                                        Icons.person,
+                                        size: 80,
+                                      )
+                                    : null,
                               ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: InkWell(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20)),
+                                      ),
+                                      builder: (BuildContext context) {
+                                        return ProfileImagePicker(vm: vm);
+                                      },
+                                    );
+                                  },
+                                  child: const CircleAvatar(
+                                    radius: 23,
+                                    backgroundColor: COLOR_BLACK_LAEL,
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: COLOR_WHITE,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            user.name,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Feather Bold',
                             ),
-                            Text(user.username),
-                            Text(user.rol ? 'Profesor/a' : 'Estudiante'),
-                          ],
-                        ),
+                          ),
+                          Text(user.username),
+                          Text(rol ? 'Profesor/a' : 'Estudiante'),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              // height: 348,
+              ),
+            ],
+          ),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // const ListTile(
-                  //   leading: Icon(Icons.dashboard, color: Colors.blue),
-                  //   title: Text('Dashboard'),
-                  // ),
-                  // const ListTile(
-                  //   leading: Icon(Icons.history, color: Colors.blue),
-                  //   title: Text('Payment History'),
-                  // ),
-                  // const ListTile(
-                  //   leading: Icon(Icons.bar_chart, color: Colors.blue),
-                  //   title: Text('Statistics'),
-                  // ),
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SuzumakukarButton(
-                        texto: 'Editar Perfil',
-                        onPressed: () {},
-                        color: COLOR_BLACK_LAEL,
-                        textColor: COLOR_WHITE),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.only(bottom: 20),
-                    child: SuzumakukarButton(
-                        texto: 'Cerrar Sesión',
-                        onPressed: () async {
-                          await vm.logout();
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (currentContext) =>
-                                    MyApp(locator<AuthUseCases>()),
-                              ),
-                              (route) => false);
-                        },
-                        color: COLOR_BLACK_LAEL,
-                        textColor: COLOR_WHITE),
-                  )
+                  rol
+                      ? ListTile(
+                          leading:
+                              const Icon(Icons.notes, color: COLOR_BLACK_LAEL),
+                          title: const Text(
+                            'Notas Estudiantes',
+                            style: TextStyle(fontFamily: 'Feather Bold'),
+                          ),
+                          onTap: () {
+                            Navigator.pushNamed(context, 'getnotaspage');
+                          },
+                        )
+                      : const SizedBox(),
                 ],
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: SuzumakukarButton(
+              texto: 'Cerrar Sesión',
+              onPressed: () async {
+                await vmProfile.logout();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (currentContext) => MyApp(locator<AuthUseCases>()),
+                  ),
+                  (route) => false,
+                );
+              },
+              color: COLOR_BLACK_LAEL,
+              textColor: COLOR_WHITE,
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileImagePicker extends StatefulWidget {
+  final HomeViewModel vm;
+  const ProfileImagePicker({Key? key, required this.vm}) : super(key: key);
+
+  @override
+  _ProfileImagePickerState createState() => _ProfileImagePickerState();
+}
+
+class _ProfileImagePickerState extends State<ProfileImagePicker> {
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      heightFactor: 0.6,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircleAvatar(
+              backgroundImage: widget.vm.imageFile != null
+                  ? FileImage(widget.vm.imageFile!)
+                  : null,
+              radius: 75,
+              child: widget.vm.imageFile == null
+                  ? const Icon(Icons.person, size: 75)
+                  : null,
+            ),
+            const SizedBox(height: 25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () async {
+                    await widget.vm.takePhoto();
+                    setState(
+                        () {}); // Actualiza el estado para reflejar la imagen seleccionada
+                  },
+                  iconSize: 35,
+                  color: COLOR_BLACK_LAEL,
+                  icon: const Icon(Icons.camera_alt_rounded),
+                ),
+                const SizedBox(width: 20),
+                IconButton(
+                  onPressed: () async {
+                    await widget.vm.pickerImage();
+                    setState(
+                        () {}); // Actualiza el estado para reflejar la imagen seleccionada
+                  },
+                  color: COLOR_BLACK_LAEL,
+                  iconSize: 35,
+                  icon: const Icon(Icons.image),
+                ),
+                const SizedBox(width: 20),
+                IconButton(
+                  onPressed: widget.vm.imageFile != null
+                      ? () {
+                          widget.vm.updateImg();
+                          widget.vm.resetImg();
+                          Navigator.pop(
+                              context); // Cierra el modal después de guardar la imagen
+                        }
+                      : null,
+                  color: COLOR_BLACK_LAEL,
+                  iconSize: 35,
+                  icon: const Icon(Icons.check_rounded),
+                ),
+              ],
             ),
           ],
         ),
