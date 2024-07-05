@@ -3,7 +3,8 @@ import 'package:suzumakukar/src/presentation/pages/desafios/list/desafios_viewmo
 
 class SuzumakukarCard extends StatelessWidget {
   final Color themeColor;
-  final String title;
+  // final String challenge;
+  final String challengeNumber;
   final Color textColor;
   final String tema;
   final Function()? onPressedEdit;
@@ -12,9 +13,9 @@ class SuzumakukarCard extends StatelessWidget {
   final Color deleteColor;
   final DesafiosViewModel? vm;
   final String idDesafio;
-  const SuzumakukarCard(this.themeColor, this.title, this.textColor, this.tema,
+  const SuzumakukarCard(this.themeColor, this.textColor, this.tema,
       this.onPressedEdit, this.editColor, this.onPressDelete, this.deleteColor,
-      {this.vm, this.idDesafio = '', super.key});
+      {this.challengeNumber = '', this.vm, this.idDesafio = '', super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class SuzumakukarCard extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: ListTile(
                   title: Text(
-                    title,
+                    challengeNumber.toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: textSizePrymary,
@@ -39,7 +40,6 @@ class SuzumakukarCard extends StatelessWidget {
                         fontFamily: font,
                         color: textColor),
                   ),
-                  // ,
                   subtitle: Text(
                     tema,
                     textAlign: TextAlign.center,
@@ -47,37 +47,7 @@ class SuzumakukarCard extends StatelessWidget {
                         fontSize: textSizeSecundary,
                         fontFamily: font,
                         color: textColor),
-                  ))
-              // Column(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     SizedBox(
-              //       child: Text(
-              //         title,
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(
-              //             fontSize: textSizePrymary,
-              //             fontWeight: FontWeight.bold,
-              //             fontFamily: font,
-              //             color: textColor),
-              //       ),
-              //     ),
-              //     Flexible(
-              //       child:
-              // Text(
-              //         tema,
-              //         textAlign: TextAlign.center,
-              //         style: TextStyle(
-              //             fontSize: textSizeSecundary,
-              //             fontFamily: font,
-              //             color: textColor),
-              //       ),
-              //     ),
-              //     SuzumakukarEditDeleteButton(() => null, COLOR_BLUE_MACAW,
-              //         onPressDelete, COLOR_YELLOW_BEE)
-              //   ],
-              // ),
-              )),
+                  )))),
     );
   }
 }

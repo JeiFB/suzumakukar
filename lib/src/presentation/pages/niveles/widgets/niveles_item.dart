@@ -25,8 +25,13 @@ class NivelesItem extends StatelessWidget {
               arguments: idEjercicio.nivelSeleccionado(niveles.id));
         },
         child: SuzumakukarCard(
-            themeColor, niveles.nivel, textColor, niveles.tema, null, editColor,
-            () {
+            themeColor,
+            // niveles.nivel,
+            challengeNumber: 'Nivel ${niveles.nivel}',
+            textColor,
+            niveles.tema,
+            null,
+            editColor, () {
           vm.deleteNivel(idCurso, niveles.id);
         }, deleteColor));
   }

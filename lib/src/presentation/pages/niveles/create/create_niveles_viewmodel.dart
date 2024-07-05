@@ -27,8 +27,8 @@ class CreateNivelesViewModel extends ChangeNotifier {
     }
   }
 
-  changeName(String value) {
-    _state = _state.copyWith(nivel: ValidationItem(value: value, error: ''));
+  changeName(int value) {
+    _state = _state.copyWith(nivel: value);
     notifyListeners();
   }
 

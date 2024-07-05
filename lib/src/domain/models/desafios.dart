@@ -10,20 +10,20 @@ String desafiosToJson(Desafios data) => json.encode(data.toJson());
 
 class Desafios {
   String id;
-  String desafio;
+  int desafio;
   String tema;
   // String img;
 
   Desafios({
     this.id = '',
-    this.desafio = '',
+    this.desafio = 0,
     this.tema = '',
     // required this.img,
   });
 
   factory Desafios.fromJson(Map<String, dynamic> json) => Desafios(
         id: json["id"] ?? '',
-        desafio: json["desafio"],
+        desafio: json["desafio"] ?? 0,
         tema: json["tema"] ?? '',
 
         // img: json["img"],

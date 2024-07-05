@@ -17,7 +17,7 @@ class GetNotasPage extends StatelessWidget {
 
     return Scaffold(
       appBar: SuzumakukarAppBar(const Icon(Icons.arrow_back_ios_new_rounded),
-          'Notas Desafio', COLOR_WHITE, () {
+          'Puntajes Desafios', COLOR_WHITE, () {
         Navigator.pop(context);
       }, COLOR_BLUE_MACAW),
       body: StreamBuilder(
@@ -58,7 +58,7 @@ class GetNotasPage extends StatelessWidget {
                           }
                           if (!completedSnapshot.hasData) {
                             return GetNotasContent(
-                              vm,
+                              // vm,
                               null,
                               user,
                               0,
@@ -68,7 +68,7 @@ class GetNotasPage extends StatelessWidget {
                               completedSnapshot.data ?? [];
 
                           return GetNotasContent(
-                            vm,
+                            // vm,
                             completedChallenges.isEmpty
                                 ? null
                                 : completedChallenges[0],

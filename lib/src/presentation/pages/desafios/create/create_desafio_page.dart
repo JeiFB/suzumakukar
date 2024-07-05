@@ -20,6 +20,8 @@ class CreateDesafioPage extends StatelessWidget {
         colorButtom, false, iconColor, 'Desafio', (value) {
       vm.changeDesafio(value);
     }, (value) {
+      null;
+    }, (value) {
       vm.changeTema(value);
     }, () {
       vm.createDesafio();

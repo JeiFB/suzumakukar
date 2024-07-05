@@ -25,8 +25,8 @@ class CreateDesafioViewModel extends ChangeNotifier {
     }
   }
 
-  changeDesafio(String value) {
-    _state = _state.copyWith(desafio: ValidationItem(value: value, error: ''));
+  changeDesafio(int value) {
+    _state = _state.copyWith(desafioNumber: value);
     notifyListeners();
   }
 

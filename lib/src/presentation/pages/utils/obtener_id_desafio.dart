@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ObtenerIdDesafio extends ChangeNotifier {
   String? _idDesafio;
-  String? _desafioNumber;
+  int? _desafioNumber;
 
   get idDesafio => _idDesafio;
   get desafioNumber => _desafioNumber;
@@ -12,7 +12,7 @@ class ObtenerIdDesafio extends ChangeNotifier {
     notifyListeners();
   }
 
-  setDesafioNumber(String desafio) {
+  setDesafioNumber(int desafio) {
     _desafioNumber = desafio;
     notifyListeners();
   }

@@ -49,7 +49,16 @@ class EjercicioDesafioPage extends StatelessWidget {
                 ? EjerciciosDesafioContent(
                     idDesafio.idDesafio, ejerciciosList.data)
                 : const Center(
-                    child: Text('Sin Desafios'),
+                    child: Text(
+                      'Sin desafios',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Feather Bold',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        // color: textColor,
+                      ),
+                    ),
                   );
           }),
         ),
@@ -67,35 +76,3 @@ class EjercicioDesafioPage extends StatelessWidget {
             : const SizedBox());
   }
 }
-
-// StreamBuilder(
-//           stream: vm.getEjercicios(idDesafio.idDesafio ?? ''),
-//           builder: ((context, snapshot) {
-//             final response = snapshot.data;
-//             if (snapshot.connectionState == ConnectionState.waiting) {
-//               return const Center(child: CircularProgressIndicator());
-//             }
-//             if (!snapshot.hasData) {
-//               return const Center(
-//                 child: Text(
-//                   'No hay informacion',
-//                   style: TextStyle(color: Colors.white),
-//                 ),
-//               );
-//             }
-//             if (response is Error) {
-//               final data = response as Error;
-//               return Center(
-//                 child: Text('Error: ${data.error}'),
-//               );
-//             }
-//             final ejerciciosList =
-//                 response as Success<List<EjerciciosMultiple>>;
-//             return ejerciciosList.data.isNotEmpty
-//                 ? EjerciciosDesafioContent(
-//                     idDesafio.idDesafio, ejerciciosList.data)
-//                 : const Center(
-//                     child: Text('Sin Ejercicios'),
-//                   );
-//           }),
-//         ),

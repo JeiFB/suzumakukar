@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:suzumakukar/src/colors/base_color.dart';
 
 class SuzumakukarTextField extends StatefulWidget {
@@ -11,13 +12,15 @@ class SuzumakukarTextField extends StatefulWidget {
   final String initialValue;
   final String errorText;
   final bool noEspacios;
+  final Function(int value)? onChangedNumber;
   final Function(String text)? onChanged;
 
   const SuzumakukarTextField(
       {Key? key,
       required this.label,
       // required this.icon,
-      required this.onChanged,
+      this.onChangedNumber,
+      this.onChanged,
       this.initialValue = '',
       this.obscureText = false,
       this.showIcon = false,
@@ -50,7 +53,14 @@ class _SuzumakukarTextFieldState extends State<SuzumakukarTextField> {
           : [
               FilteringTextInputFormatter.deny(RegExp(r'\s')),
             ],
-      onChanged: widget.onChanged,
+      keyboardType:
+          widget.onChangedNumber != null ? TextInputType.number : null,
+      onChanged: widget.onChangedNumber != null
+          ? (value) {
+              final intValue = int.tryParse(value) ?? 0;
+              widget.onChangedNumber!(intValue);
+            }
+          : widget.onChanged,
       cursorColor: COLOR_BLUE_MACAW,
       decoration: InputDecoration(
         labelText: widget.label,

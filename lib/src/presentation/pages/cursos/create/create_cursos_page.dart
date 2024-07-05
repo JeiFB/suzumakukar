@@ -23,10 +23,11 @@ class CreateCursosPage extends StatelessWidget {
         true,
         iconColor,
         'Agregar Curso',
+        null,
         (value) {
           vm.changeName(value);
         },
-        (value) => null,
+        (value) {},
         () {
           vm.createCurso();
           Navigator.pop(context);

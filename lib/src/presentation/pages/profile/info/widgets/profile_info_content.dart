@@ -5,7 +5,9 @@ import 'package:suzumakukar/src/colors/base_color.dart';
 import 'package:suzumakukar/src/domain/models/user_data.dart';
 import 'package:suzumakukar/src/domain/use_cases/auth/auth_usecases.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_button.dart';
+import 'package:suzumakukar/src/presentation/components/suzumakukar_puntaje_user.dart';
 import 'package:suzumakukar/src/presentation/pages/home/home_viewmodel.dart';
+import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
 import 'dart:io';
 
@@ -13,9 +15,11 @@ class ProfileInfoContent extends StatelessWidget {
   final UserData user;
   final HomeViewModel vm;
   final ProfileInfoViewModel vmProfile;
+  final GetNotasViewmodel vmNotas;
   final bool rol;
 
-  const ProfileInfoContent(this.user, this.vm, this.vmProfile, this.rol,
+  const ProfileInfoContent(
+      this.user, this.vm, this.vmProfile, this.vmNotas, this.rol,
       {super.key});
 
   @override
@@ -118,7 +122,59 @@ class ProfileInfoContent extends StatelessWidget {
                             Navigator.pushNamed(context, 'getnotaspage');
                           },
                         )
-                      : const SizedBox(),
+                      : ListTile(
+                          leading:
+                              const Icon(Icons.notes, color: COLOR_BLACK_LAEL),
+                          title: const Text(
+                            'Mis Puntajes',
+                            style: TextStyle(fontFamily: 'Feather Bold'),
+                          ),
+                          onTap: () {
+                            // Navigator.pushNamed(context, 'getnotaspage');
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StreamBuilder(
+                                    stream:
+                                        vmNotas.completedChallenges(user.id),
+                                    builder: (context, completedSnapshot) {
+                                      if (completedSnapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Center(
+                                            child: CircularProgressIndicator());
+                                      }
+                                      if (!completedSnapshot.hasData) {
+                                        return const SizedBox();
+                                        // GetNotasContent(
+                                        //   // vm,
+                                        //   null,
+                                        //   user,
+                                        //   0,
+                                        // );
+                                      }
+                                      final completedChallenges =
+                                          completedSnapshot.data ?? [];
+
+                                      return completedChallenges.isNotEmpty
+                                          ? SuzumakukarPuntajeUser(
+                                              completedChallenges)
+                                          : const Center(
+                                              child: Text(
+                                                'No haz hecho desafios',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily: 'Feather Bold',
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  // color: textColor,
+                                                ),
+                                              ),
+                                            );
+                                    });
+                              },
+                            );
+                          },
+                        ),
                 ],
               ),
             ),

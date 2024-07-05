@@ -5,14 +5,18 @@ import 'package:suzumakukar/src/domain/models/user_data.dart';
 import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dart';
 
 class GetNotasContent extends StatelessWidget {
-  final GetNotasViewmodel vm;
+  // final GetNotasViewmodel vm;
   final int total;
   final CompletedChallenges? challenges;
   // final int totalRealizadas;
   // final String desafio;
   // final String notas;
   final UserData user;
-  const GetNotasContent(this.vm, this.challenges, this.user, this.total,
+  const GetNotasContent(
+      // this.vm,
+      this.challenges,
+      this.user,
+      this.total,
       {super.key});
 
   @override
@@ -29,7 +33,7 @@ class GetNotasContent extends StatelessWidget {
                   child: ListView(
                     children: [
                       const Text(
-                        'Notas',
+                        'Puntajes',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Feather Bold',
@@ -49,16 +53,16 @@ class GetNotasContent extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontFamily: 'Feather Bold',
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            'Nota: ${challenges?.nota ?? 0}',
+                            'Puntaje: ${challenges?.nota ?? 0}',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontFamily: 'Feather Bold',
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: COLOR_YELLOW_BEE,
                             ),

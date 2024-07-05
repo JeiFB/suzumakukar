@@ -37,7 +37,16 @@ class EjerciciosResponse extends StatelessWidget {
             ? EjerciciosContent(idCurso.idCurso, idNivel.idNivel,
                 ejerciciosList.data, ejerciciosList.data.length)
             : const Center(
-                child: Text('Sin ejercicios'),
+                child: Text(
+                  'Sin ejercicios',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Feather Bold',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    // color: textColor,
+                  ),
+                ),
               );
       }),
     );

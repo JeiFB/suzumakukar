@@ -3,23 +3,21 @@ import 'package:suzumakukar/src/presentation/pages/utils/validation_item.dart';
 
 class CreateNivelesState {
   String id;
-  ValidationItem nivel;
+  int nivel;
   ValidationItem tema;
 
   CreateNivelesState(
-      {this.id = '',
-      this.nivel = const ValidationItem(),
-      this.tema = const ValidationItem()});
+      {this.id = '', this.nivel = 0, this.tema = const ValidationItem()});
 
-  toNivel() => Niveles(id: id, nivel: nivel.value, tema: tema.value);
+  toNivel() => Niveles(id: id, nivel: nivel, tema: tema.value);
 
   bool isValid() {
-    if (nivel.value.isEmpty || tema.value.isEmpty) {
+    if (nivel.isNegative || tema.value.isEmpty) {
       return false;
     }
     return true;
   }
 
-  CreateNivelesState copyWith({ValidationItem? nivel, ValidationItem? tema}) =>
+  CreateNivelesState copyWith({int? nivel, ValidationItem? tema}) =>
       CreateNivelesState(nivel: nivel ?? this.nivel, tema: tema ?? this.tema);
 }

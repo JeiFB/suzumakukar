@@ -19,13 +19,20 @@ class CreateNivelesPage extends StatelessWidget {
       CreateNivelesResponse(context, vm);
     });
     return SuzumakukarFloatingActionButton(
-        colorButtom, false, iconColor, 'Nivel', (value) {
-      vm.changeName(value);
-    }, (value) {
-      vm.changeTema(value);
-    }, () {
-      vm.createNivel(curso.idCurso);
-      Navigator.pop(context);
-    });
+        colorButtom,
+        false,
+        iconColor,
+        'Nivel',
+        (value) {
+          vm.changeName(value);
+        },
+        null,
+        (value) {
+          vm.changeTema(value);
+        },
+        () {
+          vm.createNivel(curso.idCurso);
+          Navigator.pop(context);
+        });
   }
 }

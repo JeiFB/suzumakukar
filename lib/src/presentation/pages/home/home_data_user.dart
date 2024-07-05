@@ -13,8 +13,6 @@ class HomeDataUser extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeViewModel vm = Provider.of<HomeViewModel>(context);
     return Scaffold(
-      // backgroundColor: BACKGROUND_COLOR,
-      // body: ProfileContent()
       body: StreamBuilder(
           stream: vm.getUserById(),
           builder: ((context, snapshot) {

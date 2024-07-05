@@ -8,8 +8,10 @@ class SuzumakukarFloatingActionButton extends StatelessWidget {
   final Color colorButton;
   final Color colorIcon;
   final String title;
+  // final int numberTitle;
   final bool oneTextField;
-  final Function(String value) onPressedTextField;
+  final Function(int value)? onPressedNumber;
+  final Function(String value)? onPressedTextField;
   final Function(String value) onPressedTextFieldASecond;
   final Function() onPressedButton;
   const SuzumakukarFloatingActionButton(
@@ -17,10 +19,13 @@ class SuzumakukarFloatingActionButton extends StatelessWidget {
       this.oneTextField,
       this.colorIcon,
       this.title,
+      this.onPressedNumber,
       this.onPressedTextField,
       this.onPressedTextFieldASecond,
       this.onPressedButton,
-      {super.key});
+      {
+      // this.numberTitle = 0,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +50,7 @@ class SuzumakukarFloatingActionButton extends StatelessWidget {
                 font: 'Feather Bold',
                 textColor: textColor,
                 buttonColor: colorButton,
+                onPressedNumber: onPressedNumber,
                 onPressedTextField: onPressedTextField,
                 onPressedTextFieldASecond: onPressedTextFieldASecond,
                 onPressedButton: onPressedButton,

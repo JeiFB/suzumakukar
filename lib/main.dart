@@ -22,18 +22,17 @@ import 'package:suzumakukar/src/presentation/pages/ejercicios/update/ejercicio_u
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/list/ejercicio_desafio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/ejerciciostest/create/create_ejercicio_test_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/ejerciciostest/list/ejercicio_test_page.dart';
-import 'package:suzumakukar/src/presentation/pages/ejerciciostest/list/ejercicio_test_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/ejerciciostest/update/ejercicio_test_update_page.dart';
-import 'package:suzumakukar/src/presentation/pages/ejerciciostest/update/ejercicio_test_update_viewmodel.dart';
+// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/create/create_ejercicio_test_viewmodel.dart';
+// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/list/ejercicio_test_page.dart';
+// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/list/ejercicio_test_viewmodel.dart';
+// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/update/ejercicio_test_update_page.dart';
+// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/update/ejercicio_test_update_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/home/home_data_user.dart';
 import 'package:suzumakukar/src/presentation/pages/lecturas/create/create_lectura_page.dart';
 import 'package:suzumakukar/src/presentation/pages/lecturas/create/create_lectura_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/lecturas/list/lecturas_list_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/notas/get_notas_page.dart';
 import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/profile/updateImg/update_img_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/testPage/create/create_test_viewmodel.dart';
@@ -88,8 +87,7 @@ class MyApp extends StatelessWidget {
             create: (context) => HomeViewModel(
                 locator<AuthUseCases>(), locator<UsersUseCases>())),
         ChangeNotifierProvider(
-            create: (context) => ProfileInfoViewModel(
-                locator<AuthUseCases>(), locator<UsersUseCases>())),
+            create: (context) => ProfileInfoViewModel(locator<AuthUseCases>())),
         ChangeNotifierProvider(
             create: (context) => CursosListViewModel(locator<CursosUseCase>())),
         ChangeNotifierProvider(
@@ -133,15 +131,15 @@ class MyApp extends StatelessWidget {
             create: (context) => TestListViewModel(locator<TestUseCases>())),
         ChangeNotifierProvider(
             create: (context) => CreateTestViewModel(locator<TestUseCases>())),
-        ChangeNotifierProvider(
-            create: (context) =>
-                EjercicioTestViewModel(locator<EjerciciosTestUseCases>())),
-        ChangeNotifierProvider(
-            create: (context) => CreateEjercicioTestViewModel(
-                locator<EjerciciosTestUseCases>())),
-        ChangeNotifierProvider(
-            create: (context) => EjercicioTestUpdateViewModel(
-                locator<EjerciciosTestUseCases>())),
+        // ChangeNotifierProvider(
+        //     create: (context) =>
+        //         EjercicioTestViewModel(locator<EjerciciosTestUseCases>())),
+        // ChangeNotifierProvider(
+        //     create: (context) => CreateEjercicioTestViewModel(
+        //         locator<EjerciciosTestUseCases>())),
+        // ChangeNotifierProvider(
+        //     create: (context) => EjercicioTestUpdateViewModel(
+        //         locator<EjerciciosTestUseCases>())),
         ChangeNotifierProvider(
             create: (context) =>
                 LecturaListViewModel(locator<LecturaUseCases>())),
@@ -192,10 +190,10 @@ class MyApp extends StatelessWidget {
                 const CreateEjercicioDesafioPage(),
             'ejercicioupdatedesafio': (BuildContext context) =>
                 const EjercicioUpdateDesafioPage(),
-            'ejerciciostestpage': (BuildContext context) =>
-                const EjercicioTestPage(),
-            'ejerciciostestupdatepage': (BuildContext context) =>
-                const EjercicioTestUpdatePage(),
+            // 'ejerciciostestpage': (BuildContext context) =>
+            //     const EjercicioTestPage(),
+            // 'ejerciciostestupdatepage': (BuildContext context) =>
+            //     const EjercicioTestUpdatePage(),
             // 'createjerciciotest': (BuildContext context) =>
             //     const CreateEjercicioTestPage(),
             'createlecturapage': (BuildContext context) =>

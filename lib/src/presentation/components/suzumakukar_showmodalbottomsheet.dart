@@ -5,11 +5,13 @@ import 'package:suzumakukar/src/presentation/components/suzumakukar_textfield.da
 void showCustomBottomSheet({
   required BuildContext context,
   required String title,
+  // final int numberTitle = -1,
   required String font,
   required Color textColor,
   required Color buttonColor,
   bool oneTextField = false,
-  required Function(String) onPressedTextField,
+  Function(int)? onPressedNumber,
+  required Function(String)? onPressedTextField,
   required Function(String)? onPressedTextFieldASecond,
   required VoidCallback onPressedButton,
 }) {
@@ -31,10 +33,15 @@ void showCustomBottomSheet({
               ),
             ),
             const SizedBox(height: 10),
-            SuzumakukarTextField(
-              label: title,
-              onChanged: onPressedTextField,
-            ),
+            onPressedNumber != null
+                ? SuzumakukarTextField(
+                    label: 'Numero del $title',
+                    onChangedNumber: onPressedNumber,
+                  )
+                : SuzumakukarTextField(
+                    label: title,
+                    onChanged: onPressedTextField,
+                  ),
             const SizedBox(height: 10),
             !oneTextField
                 ? SuzumakukarTextField(

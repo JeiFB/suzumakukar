@@ -35,7 +35,9 @@ class DesafiosPageContent extends StatelessWidget {
           : null,
       child: SuzumakukarCard(
         color,
-        desafios.desafio,
+
+        // desafios.desafio,
+        challengeNumber: 'Desafio ${desafios.desafio}',
         textColor,
         desafios.tema,
         null,

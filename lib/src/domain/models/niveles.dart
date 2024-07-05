@@ -10,18 +10,18 @@ String nivelesToJson(Niveles data) => json.encode(data.toJson());
 
 class Niveles {
   String id;
-  String nivel;
+  int nivel;
   String tema;
 
   Niveles({
     this.id = '',
-    this.nivel = '',
+    this.nivel = 0,
     this.tema = '',
   });
 
   factory Niveles.fromJson(Map<String, dynamic> json) => Niveles(
         id: json["id"] ?? '',
-        nivel: json["Nivel"] ?? '',
+        nivel: json["Nivel"] ?? 0,
         tema: json["tema"] ?? '',
       );
 
