@@ -4,7 +4,7 @@ import 'package:suzumakukar/src/presentation/pages/utils/validation_item.dart';
 class EjercicioUpdateDesafioState {
   String id;
   String img;
-  ValidationItem ejercicio;
+  int ejercicio;
   ValidationItem descripcion;
   ValidationItem respuesta;
   List<ValidationItem> opciones;
@@ -12,7 +12,7 @@ class EjercicioUpdateDesafioState {
   EjercicioUpdateDesafioState(
       {this.id = '',
       this.img = '',
-      this.ejercicio = const ValidationItem(),
+      this.ejercicio = 0,
       this.descripcion = const ValidationItem(),
       this.respuesta = const ValidationItem(),
       this.opciones = const [
@@ -25,7 +25,7 @@ class EjercicioUpdateDesafioState {
   toEjercicio() => EjerciciosMultiple(
       id: id,
       img: img,
-      ejercicio: ejercicio.value,
+      ejercicio: ejercicio,
       descripcion: descripcion.value,
       respuesta: respuesta.value,
       opciones: opciones.map((item) => item.value).toList());
@@ -33,7 +33,7 @@ class EjercicioUpdateDesafioState {
   bool isValid() {
     if (descripcion.value.isEmpty ||
         respuesta.value.isEmpty ||
-        ejercicio.value.isEmpty ||
+        ejercicio.isNegative ||
         opciones.any((option) => option.value.isEmpty) ||
         id.isEmpty) {
       return false;
@@ -45,7 +45,7 @@ class EjercicioUpdateDesafioState {
   EjercicioUpdateDesafioState copyWith({
     String? id,
     String? img,
-    ValidationItem? ejercicio,
+    int? ejercicio,
     ValidationItem? descripcion,
     ValidationItem? respuesta,
     List<ValidationItem>? opciones,

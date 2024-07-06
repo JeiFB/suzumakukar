@@ -1,16 +1,18 @@
+import 'dart:ffi';
+
 import 'package:suzumakukar/src/domain/models/ejercicios.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/validation_item.dart';
 
 class EjercicioUpdateState {
   String id;
-  ValidationItem ejercicio;
+  int ejercicio;
   ValidationItem descripcion;
   ValidationItem respuesta;
   List<ValidationItem> ejecucion;
 
   toEjercicio() => Ejercicios(
       id: id,
-      ejercicio: ejercicio.value,
+      ejercicio: ejercicio,
       descripcion: descripcion.value,
       respuesta: respuesta.value,
       ejecucion: ejecucion.map((item) => item.value).toList());
@@ -18,7 +20,7 @@ class EjercicioUpdateState {
   bool isValid() {
     if (descripcion.value.isEmpty ||
         respuesta.value.isEmpty ||
-        ejercicio.value.isEmpty ||
+        ejercicio.isNegative ||
         ejecucion.any((option) => option.value.isEmpty) ||
         id.isEmpty) {
       return false;
@@ -29,14 +31,14 @@ class EjercicioUpdateState {
 
   EjercicioUpdateState({
     this.id = '',
-    this.ejercicio = const ValidationItem(),
+    this.ejercicio = 0,
     this.descripcion = const ValidationItem(),
     this.respuesta = const ValidationItem(),
     this.ejecucion = const [],
   });
   EjercicioUpdateState copyWith({
     String? id,
-    ValidationItem? ejercicio,
+    int? ejercicio,
     ValidationItem? descripcion,
     ValidationItem? respuesta,
     List<ValidationItem>? ejecucion,

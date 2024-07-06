@@ -11,7 +11,7 @@ String ejerciciosToJson(Ejercicios data) => json.encode(data.toJson());
 
 class Ejercicios {
   String id;
-  String ejercicio;
+  int ejercicio;
   String descripcion;
   String respuesta;
   String img;
@@ -20,7 +20,7 @@ class Ejercicios {
 
   Ejercicios({
     this.id = '',
-    this.ejercicio = "",
+    this.ejercicio = 0,
     this.descripcion = '',
     this.respuesta = '',
     this.ejecucion = const [],
@@ -31,7 +31,7 @@ class Ejercicios {
 
   factory Ejercicios.fromJson(Map<String, dynamic> json) => Ejercicios(
         id: json["id"] ?? '',
-        ejercicio: json["ejercicio"],
+        ejercicio: json["ejercicio"] ?? 0,
         descripcion: json["descripcion"] ?? '',
         respuesta: json["respuesta"] ?? '',
         ejecucion: List<dynamic>.from(

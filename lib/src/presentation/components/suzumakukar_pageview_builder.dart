@@ -87,7 +87,7 @@ class _SuzumakukarPageViewBuilderState
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text(
-                              'Ejercicio ${index + 1}',
+                              'Ejercicio ${widget.ejerciciosList[index].ejercicio}',
                               style: TextStyle(
                                   color: widget.themeColor,
                                   fontFamily: fontPrimary,

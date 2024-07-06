@@ -12,7 +12,7 @@ String ejerciciosdesafioToJson(EjerciciosMultiple data) =>
 
 class EjerciciosMultiple {
   String id;
-  String ejercicio;
+  int ejercicio;
   String descripcion;
   List<dynamic> opciones;
   String respuesta;
@@ -20,7 +20,7 @@ class EjerciciosMultiple {
 
   EjerciciosMultiple({
     this.id = '',
-    this.ejercicio = '',
+    this.ejercicio = 0,
     this.descripcion = '',
     this.respuesta = '',
     this.opciones = const [],
@@ -30,7 +30,7 @@ class EjerciciosMultiple {
   factory EjerciciosMultiple.fromJson(Map<String, dynamic> json) =>
       EjerciciosMultiple(
         id: json["id"] ?? '',
-        ejercicio: json["ejercicio"] ?? '',
+        ejercicio: json["ejercicio"] ?? 0,
         descripcion: json["descripcion"] ?? '',
         respuesta: json["respuesta"] ?? '',
         opciones: List<dynamic>.from(

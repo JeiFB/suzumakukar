@@ -20,7 +20,7 @@ class EjercicioUpdateDesafioContent extends StatelessWidget {
     return ListView(
       children: [
         SuzumakukarCreateEjercicio(
-            initialEjercicio: ejercicios.ejercicio,
+            initialEjercicio: ejercicios.ejercicio.toString(),
             initialPlanteamiento: ejercicios.descripcion,
             initialRespuesta: ejercicios.opciones[0],
             respuesta: 'Respuesta',

@@ -3,14 +3,14 @@ import 'package:suzumakukar/src/presentation/pages/utils/validation_item.dart';
 
 class CreateEjercicioState {
   String id;
-  ValidationItem ejercicio;
+  int ejercicio;
   ValidationItem descripcion;
   ValidationItem respuesta;
   List<ValidationItem> ejecucion;
 
   CreateEjercicioState({
     this.id = '',
-    this.ejercicio = const ValidationItem(),
+    this.ejercicio = 0,
     this.descripcion = const ValidationItem(),
     this.respuesta = const ValidationItem(),
     this.ejecucion = const [],
@@ -18,7 +18,7 @@ class CreateEjercicioState {
 
   toEjercicios() => Ejercicios(
       id: id,
-      ejercicio: ejercicio.value,
+      ejercicio: ejercicio,
       descripcion: descripcion.value,
       respuesta: respuesta.value,
       ejecucion: ejecucion.map((item) => item.value).toList());
@@ -26,7 +26,7 @@ class CreateEjercicioState {
   bool isValid() {
     if (descripcion.value.isEmpty ||
         respuesta.value.isEmpty ||
-        ejercicio.value.isEmpty ||
+        ejercicio.isNegative ||
         ejecucion.any((option) => option.value.isEmpty)) {
       return false;
     } else {
@@ -35,7 +35,7 @@ class CreateEjercicioState {
   }
 
   CreateEjercicioState copyWith(
-          {ValidationItem? ejercicio,
+          {int? ejercicio,
           ValidationItem? descripcion,
           ValidationItem? respuesta,
           List<ValidationItem>? ejecucion}) =>

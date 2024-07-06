@@ -7,7 +7,7 @@ class SuzumakukarCreateEjercicio extends StatelessWidget {
   final String initialEjercicio;
   final String initialPlanteamiento;
   final String initialRespuesta;
-  final Function(String value) onChangeEjercicio;
+  final Function(int value) onChangeEjercicio;
   final Function(String value) onChangeDescripcion;
   final Function(String value) onChangeRespuesta;
   const SuzumakukarCreateEjercicio(
@@ -49,7 +49,7 @@ class SuzumakukarCreateEjercicio extends StatelessWidget {
           child: SuzumakukarTextField(
               initialValue: initialEjercicio,
               label: 'Numero de ejercicio',
-              onChanged: onChangeEjercicio),
+              onChangedNumber: onChangeEjercicio),
         ),
         sizedbox,
         Container(

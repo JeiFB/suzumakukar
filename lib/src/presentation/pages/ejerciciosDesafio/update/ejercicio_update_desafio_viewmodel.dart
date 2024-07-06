@@ -29,8 +29,7 @@ class EjercicioUpdateDesafioViewModel extends ChangeNotifier {
       _state = _state.copyWith(
           descripcion:
               ValidationItem(value: ejercicios.descripcion, error: ''));
-      _state = _state.copyWith(
-          ejercicio: ValidationItem(value: ejercicios.ejercicio, error: ''));
+      _state = _state.copyWith(ejercicio: ejercicios.ejercicio);
       _state = _state.copyWith(
           respuesta: ValidationItem(value: ejercicios.respuesta, error: ''));
       _state = _state.copyWith(opciones: [
@@ -76,9 +75,8 @@ class EjercicioUpdateDesafioViewModel extends ChangeNotifier {
     }
   }
 
-  changeEjercicio(String value) {
-    _state =
-        _state.copyWith(ejercicio: ValidationItem(value: value, error: ''));
+  changeEjercicio(int value) {
+    _state = _state.copyWith(ejercicio: value);
     notifyListeners();
   }
 

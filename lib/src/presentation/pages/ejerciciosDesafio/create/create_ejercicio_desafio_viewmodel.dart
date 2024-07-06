@@ -55,9 +55,8 @@ class CreateEjercicioDesafioViewModel extends ChangeNotifier {
     }
   }
 
-  changeEjercicio(String value) {
-    _state =
-        _state.copyWith(ejercicio: ValidationItem(value: value, error: ''));
+  changeEjercicio(int value) {
+    _state = _state.copyWith(ejercicio: value);
     notifyListeners();
   }
 

@@ -53,7 +53,7 @@ class _EjercicioUpdateContentState extends State<EjercicioUpdateContent> {
           children: [
             const SizedBox(height: 15),
             SuzumakukarCreateEjercicio(
-                initialEjercicio: widget.ejercicios.ejercicio,
+                initialEjercicio: widget.ejercicios.ejercicio.toString(),
                 initialPlanteamiento: widget.ejercicios.descripcion,
                 initialRespuesta: widget.ejercicios.respuesta,
                 respuesta: 'Respuesta',
