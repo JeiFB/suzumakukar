@@ -44,11 +44,11 @@ class LecturaRepositoryImpl implements LecturaRepository {
   }
 
   @override
-  Future<Resource<String>> update(Lectura lectura) async {
+  Future<Resource<String>> updateLectura(Lectura lectura) async {
     try {
       Map<String, dynamic> map = {
         'titulo': lectura.titulo,
-        'text': lectura.texto,
+        'texto': lectura.texto,
       };
       final data = await _lecturaRef.doc(lectura.id).update(map);
       return Success('El texto se ha actualizado correctamente');

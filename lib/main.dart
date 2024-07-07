@@ -7,7 +7,6 @@ import 'package:suzumakukar/src/domain/use_cases/completedChallenges/completed_c
 import 'package:suzumakukar/src/domain/use_cases/cursos/cursos_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/desafios/desafios_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/ejercicios_desafios_usecases.dart';
-import 'package:suzumakukar/src/domain/use_cases/ejerciciosTest/ejercicios_test_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/lectura/lectura_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/testExam/test_%20usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/users/users_usecases.dart';
@@ -22,15 +21,12 @@ import 'package:suzumakukar/src/presentation/pages/ejercicios/update/ejercicio_u
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/list/ejercicio_desafio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_viewmodel.dart';
-// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/create/create_ejercicio_test_viewmodel.dart';
-// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/list/ejercicio_test_page.dart';
-// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/list/ejercicio_test_viewmodel.dart';
-// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/update/ejercicio_test_update_page.dart';
-// import 'package:suzumakukar/src/presentation/pages/ejerciciostest/update/ejercicio_test_update_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/home/home_data_user.dart';
 import 'package:suzumakukar/src/presentation/pages/lecturas/create/create_lectura_page.dart';
 import 'package:suzumakukar/src/presentation/pages/lecturas/create/create_lectura_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/lecturas/list/lecturas_list_viewmodel.dart';
+import 'package:suzumakukar/src/presentation/pages/lecturas/update/update_lectura_page.dart';
+import 'package:suzumakukar/src/presentation/pages/lecturas/update/update_lectura_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/notas/get_notas_page.dart';
 import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_page.dart';
@@ -126,26 +122,19 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => GetNotasViewmodel(locator<UsersUseCases>(),
                 locator<CompletedChallengeUseCases>())),
-
         ChangeNotifierProvider(
             create: (context) => TestListViewModel(locator<TestUseCases>())),
         ChangeNotifierProvider(
             create: (context) => CreateTestViewModel(locator<TestUseCases>())),
-        // ChangeNotifierProvider(
-        //     create: (context) =>
-        //         EjercicioTestViewModel(locator<EjerciciosTestUseCases>())),
-        // ChangeNotifierProvider(
-        //     create: (context) => CreateEjercicioTestViewModel(
-        //         locator<EjerciciosTestUseCases>())),
-        // ChangeNotifierProvider(
-        //     create: (context) => EjercicioTestUpdateViewModel(
-        //         locator<EjerciciosTestUseCases>())),
         ChangeNotifierProvider(
             create: (context) =>
                 LecturaListViewModel(locator<LecturaUseCases>())),
         ChangeNotifierProvider(
             create: (context) =>
                 CreateLecturaViewModel(locator<LecturaUseCases>())),
+        ChangeNotifierProvider(
+            create: (context) =>
+                UpdateLecturaViewModel(locator<LecturaUseCases>())),
         ChangeNotifierProvider(
             create: (context) => ScreenResultadoDesafioViewModel(
                 locator<CompletedChallengeUseCases>(),
@@ -190,14 +179,10 @@ class MyApp extends StatelessWidget {
                 const CreateEjercicioDesafioPage(),
             'ejercicioupdatedesafio': (BuildContext context) =>
                 const EjercicioUpdateDesafioPage(),
-            // 'ejerciciostestpage': (BuildContext context) =>
-            //     const EjercicioTestPage(),
-            // 'ejerciciostestupdatepage': (BuildContext context) =>
-            //     const EjercicioTestUpdatePage(),
-            // 'createjerciciotest': (BuildContext context) =>
-            //     const CreateEjercicioTestPage(),
             'createlecturapage': (BuildContext context) =>
                 const CreateLecturaPage(),
+            'updatelecturapage': (BuildContext context) =>
+                const UpdateLecturaPage(),
             // 'screenresultadopage': (BuildContext context) =>
             //     const ScreenResultadoPage(),
             'screenresultadodesafiopage': (BuildContext context) =>

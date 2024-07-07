@@ -13,7 +13,7 @@ class LecturaListResponse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LecturaListViewModel vm = Provider.of<LecturaListViewModel>(context);
-    final controller = PageController(viewportFraction: 0.85);
+    final controller = PageController(viewportFraction: 1);
     return StreamBuilder(
       stream: vm.getLectura(),
       builder: ((context, snapshot) {

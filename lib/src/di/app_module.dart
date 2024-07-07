@@ -59,6 +59,7 @@ import 'package:suzumakukar/src/domain/use_cases/lectura/create_lectura_usecase.
 import 'package:suzumakukar/src/domain/use_cases/lectura/delete_lectura_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/lectura/get_lectura_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/lectura/lectura_usecases.dart';
+import 'package:suzumakukar/src/domain/use_cases/lectura/update_lectura_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/testExam/create_test_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/testExam/delete_test_usecase.dart';
 import 'package:suzumakukar/src/domain/use_cases/testExam/get_test_usecase.dart';
@@ -199,7 +200,8 @@ abstract class AppModule {
   LecturaUseCases get lecturaUseCases => LecturaUseCases(
       createLectura: CreateLecturaUseCase(lecturaRespository),
       deleteLectura: DeleteLecturaUseCase(lecturaRespository),
-      getLectura: GetLecturaUseCase(lecturaRespository));
+      getLectura: GetLecturaUseCase(lecturaRespository),
+      updateLectura: UpdateLecturaUsecase(lecturaRespository));
 
   CompletedChallengeUseCases get completeChallengeUseCases =>
       CompletedChallengeUseCases(

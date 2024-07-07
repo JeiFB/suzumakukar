@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:suzumakukar/src/domain/models/ejercicios.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/validation_item.dart';
 

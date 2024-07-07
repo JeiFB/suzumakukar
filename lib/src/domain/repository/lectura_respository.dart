@@ -5,5 +5,5 @@ abstract class LecturaRepository {
   Future<Resource<String>> createLectura(Lectura lectura);
   Future<Resource<String>> deleteLectura(String id);
   Stream<Resource<List<Lectura>>> getLectura();
-  Future<Resource<String>> update(Lectura lectura);
+  Future<Resource<String>> updateLectura(Lectura lectura);
 }
