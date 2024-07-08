@@ -102,6 +102,7 @@ class EjercicioUpdateDesafioContent extends StatelessWidget {
               texto: 'Editar ejercicio',
               onPressed: () {
                 vm.updateEjercicio(idDesafio);
+                vm.resetImg();
               },
               color: boton,
               textColor: textBoton),

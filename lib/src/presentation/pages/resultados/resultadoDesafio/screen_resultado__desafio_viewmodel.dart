@@ -34,7 +34,7 @@ class ScreenResultadoDesafioViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  desafioNumber(String value) {
+  desafioNumber(int value) {
     _responseController.add(Init());
     _state = _state.copyWith(desafioNumber: value);
     notifyListeners();

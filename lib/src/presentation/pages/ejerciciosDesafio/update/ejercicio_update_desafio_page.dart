@@ -28,6 +28,7 @@ class EjercicioUpdateDesafioPage extends StatelessWidget {
       backgroundColor: COLOR_WHITE,
       appBar: SuzumakukarAppBar(const Icon(Icons.arrow_back_ios_new),
           'Actualizar ejercicio', textColorAppBarr, () {
+        vm.resetImg();
         Navigator.pop(context);
       }, appBarColor),
       body: FutureBuilder(

@@ -33,7 +33,7 @@ class SuzumakukarPuntajeUser extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${completedChallenges[index].desafioNumber} ',
+                      'Desafio ${completedChallenges[index].desafioNumber} ',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontFamily: 'Feather Bold',

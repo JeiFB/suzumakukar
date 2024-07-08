@@ -17,14 +17,19 @@ class EjerciciosResponse extends StatelessWidget {
     ObtenerIdNivel idNivel = Provider.of<ObtenerIdNivel>(context);
 
     return StreamBuilder(
-      stream: vm.getEjercicios(idCurso.idCurso ?? '', idNivel.idNivel ?? ''),
+      stream: vm.getEjercicios(idCurso.idCurso, idNivel.idNivel),
       builder: ((context, snapshot) {
+        final response = snapshot.data;
+        // if (snapshot.connectionState == ConnectionState.waiting) {
+        //   return const Center(
+        //     child: CircularProgressIndicator(),
+        //   );
+        // }
         if (!snapshot.hasData) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-        final response = snapshot.data;
         if (response is Error) {
           final data = response as Error;
           return Center(
@@ -32,7 +37,6 @@ class EjerciciosResponse extends StatelessWidget {
           );
         }
         final ejerciciosList = response as Success<List<Ejercicios>>;
-
         return ejerciciosList.data.isNotEmpty
             ? EjerciciosContent(idCurso.idCurso, idNivel.idNivel,
                 ejerciciosList.data, ejerciciosList.data.length)

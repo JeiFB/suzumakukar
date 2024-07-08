@@ -2,12 +2,12 @@ import 'package:suzumakukar/src/domain/models/completedChallenges.dart';
 
 class ScreenResultadoDesafioState {
   final String id;
-  final String desafioNumber;
+  final int desafioNumber;
   final String nota;
   final bool realizado;
   ScreenResultadoDesafioState(
       {this.id = '',
-      this.desafioNumber = '',
+      this.desafioNumber = 0,
       this.nota = '',
       this.realizado = true});
 
@@ -18,7 +18,7 @@ class ScreenResultadoDesafioState {
       realizado: realizado);
 
   ScreenResultadoDesafioState copyWith(
-          {String? id, String? desafioNumber, String? nota, bool? realizado}) =>
+          {String? id, int? desafioNumber, String? nota, bool? realizado}) =>
       ScreenResultadoDesafioState(
           id: id ?? this.id,
           desafioNumber: desafioNumber ?? this.desafioNumber,

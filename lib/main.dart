@@ -31,6 +31,7 @@ import 'package:suzumakukar/src/presentation/pages/notas/get_notas_page.dart';
 import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_viewmodel.dart';
+import 'package:suzumakukar/src/presentation/pages/resultados/resultadosNiveles/screen_resultado_nivel_page.dart';
 import 'package:suzumakukar/src/presentation/pages/testPage/create/create_test_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/testPage/list/test_list_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
@@ -183,8 +184,8 @@ class MyApp extends StatelessWidget {
                 const CreateLecturaPage(),
             'updatelecturapage': (BuildContext context) =>
                 const UpdateLecturaPage(),
-            // 'screenresultadopage': (BuildContext context) =>
-            //     const ScreenResultadoPage(),
+            'screenresultadopage': (BuildContext context) =>
+                const ScreenResultadoNivelPage(),
             'screenresultadodesafiopage': (BuildContext context) =>
                 const ScreenResultadoDesafioPage(),
             'getnotaspage': (BuildContext context) => const GetNotasPage()

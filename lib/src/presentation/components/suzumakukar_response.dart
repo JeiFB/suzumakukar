@@ -141,9 +141,9 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
               : 'Finalizar',
         ),
       ),
-      (widget.mostrarEjecucion && modal)
-          ? SuzumakukarButtonEjecucion(widget.index, widget.lista)
-          : const SizedBox(height: 15),
+      // (widget.mostrarEjecucion && modal)
+      //     ? SuzumakukarButtonEjecucion(widget.index, widget.lista)
+      //     : const SizedBox(height: 15),
     ]);
   }
 }

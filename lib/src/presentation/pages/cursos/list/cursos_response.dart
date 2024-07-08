@@ -17,6 +17,7 @@ class CursosResponse extends StatelessWidget {
     return StreamBuilder(
       stream: vm.getCursos(),
       builder: ((context, snapshot) {
+        print('cargando dato ${snapshot.connectionState}');
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),

@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:suzumakukar/src/colors/base_color.dart';
 import 'package:suzumakukar/src/domain/models/completedChallenges.dart';
 import 'package:suzumakukar/src/domain/models/user_data.dart';
-import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dart';
 
 class GetNotasContent extends StatelessWidget {
   // final GetNotasViewmodel vm;
   final int total;
   final CompletedChallenges? challenges;
-  // final int totalRealizadas;
-  // final String desafio;
-  // final String notas;
   final UserData user;
   const GetNotasContent(
       // this.vm,
@@ -49,7 +45,7 @@ class GetNotasContent extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '${challenges?.desafioNumber ?? 'Sin realizar Desafios'} ',
+                            'Desafio ${challenges?.desafioNumber ?? 'Sin realizar'} ',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontFamily: 'Feather Bold',

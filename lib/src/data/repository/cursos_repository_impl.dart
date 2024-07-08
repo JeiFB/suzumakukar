@@ -185,7 +185,7 @@ class CursosRepositoryImpl implements CursosRepository {
         'respuesta': ejercicios.respuesta,
         'ejecucion': ejercicios.ejecucion
       };
-      final data = await _cursosRef
+      await _cursosRef
           .doc(idCurso)
           .collection('Niveles')
           .doc(idNivel)

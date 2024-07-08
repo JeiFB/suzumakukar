@@ -3,7 +3,6 @@
 //     final completedChallenges = completedChallengesFromJson(jsonString);
 
 import 'dart:convert';
-import 'dart:ffi';
 
 CompletedChallenges completedChallengesFromJson(String str) =>
     CompletedChallenges.fromJson(json.decode(str));
@@ -13,13 +12,13 @@ String completedChallengesToJson(CompletedChallenges data) =>
 
 class CompletedChallenges {
   String idDesafio;
-  String desafioNumber;
+  int desafioNumber;
   bool realizado;
   String nota;
 
   CompletedChallenges({
     this.idDesafio = '',
-    this.desafioNumber = '',
+    this.desafioNumber = 0,
     this.realizado = false,
     this.nota = '',
   });
@@ -27,7 +26,7 @@ class CompletedChallenges {
   factory CompletedChallenges.fromJson(Map<String, dynamic> json) =>
       CompletedChallenges(
         idDesafio: json["idDesafio"] ?? '',
-        desafioNumber: json["desafioNumber"] ?? '',
+        desafioNumber: json["desafioNumber"] ?? 0,
         realizado: json["realizado"] ?? false,
         nota: json["nota"] ?? '',
       );

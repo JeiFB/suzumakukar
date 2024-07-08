@@ -107,4 +107,8 @@ class EjercicioUpdateDesafioViewModel extends ChangeNotifier {
   resetData() {
     _state = EjercicioUpdateDesafioState();
   }
+
+  resetImg() {
+    _imageFile = null;
+  }
 }
