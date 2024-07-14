@@ -6,7 +6,6 @@ import 'package:suzumakukar/src/presentation/components/suzumakukar_appbar.dart'
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_response.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/widgets/ejercicio_update_desafio_content.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_desafio.dart';
 
 class EjercicioUpdateDesafioPage extends StatelessWidget {
   const EjercicioUpdateDesafioPage({super.key});
@@ -15,11 +14,10 @@ class EjercicioUpdateDesafioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Color appBarColor = COLOR_BLUE_MACAW;
     Color textColorAppBarr = COLOR_WHITE;
-    ObtenerIdDesafio idDesafio = Provider.of<ObtenerIdDesafio>(context);
+    // ObtenerIdDesafio idDesafio = Provider.of<ObtenerIdDesafio>(context);
     EjercicioUpdateDesafioViewModel vm =
         Provider.of<EjercicioUpdateDesafioViewModel>(context);
-    EjerciciosMultiple ejerciciosArg =
-        ModalRoute.of(context)?.settings.arguments as EjerciciosMultiple;
+    Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       EjercicioUpdateDesafioResponse(context, vm);
     });
@@ -32,9 +30,9 @@ class EjercicioUpdateDesafioPage extends StatelessWidget {
         Navigator.pop(context);
       }, appBarColor),
       body: FutureBuilder(
-          future: vm.loadData(ejerciciosArg),
+          future: vm.loadData(arguments['lista'] as EjerciciosMultiple),
           builder: (context, _) => EjercicioUpdateDesafioContent(
-              vm, idDesafio.idDesafio, ejerciciosArg)),
+              vm, arguments['id'], arguments['lista'] as EjerciciosMultiple)),
     );
   }
 }

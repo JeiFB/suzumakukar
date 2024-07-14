@@ -16,10 +16,6 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     LoginViewModel vm = Provider.of<LoginViewModel>(context);
 
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   LoginResponse(vm, context);
-    // });
-// SingleChildScrollView(child: LoginContent(vm))
     return Scaffold(
       backgroundColor: COLOR_WHITE,
       appBar: SuzumakukarAppBar(const Icon(Icons.arrow_back_ios_sharp),

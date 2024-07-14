@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:suzumakukar/src/domain/models/niveles.dart';
 import 'package:suzumakukar/src/colors/base_color.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_card.dart';
 import 'package:suzumakukar/src/presentation/pages/niveles/list/niveles_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_nivel.dart';
 
 class NivelesItem extends StatelessWidget {
   final Niveles niveles;
@@ -18,15 +16,13 @@ class NivelesItem extends StatelessWidget {
     Color textColor = COLOR_WHITE;
     Color editColor = COLOR_YELLOW_BEE;
     Color deleteColor = COLOR_GREEN_PASTEL;
-    ObtenerIdNivel idEjercicio = Provider.of<ObtenerIdNivel>(context);
     return GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, 'ejercicios',
-              arguments: idEjercicio.nivelSeleccionado(niveles.id));
+              arguments: {'idCurso': idCurso, 'idNivel': niveles.id});
         },
         child: SuzumakukarCard(
             themeColor,
-            // niveles.nivel,
             challengeNumber: 'Nivel ${niveles.nivel}',
             textColor,
             niveles.tema,

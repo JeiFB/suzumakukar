@@ -9,13 +9,14 @@ class NivelesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String idCurso = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       appBar: SuzumakukarAppBar(
           const Icon(Icons.arrow_back_ios_sharp), 'NIVELES', COLOR_WHITE, () {
         Navigator.pop(context, 'cursos');
       }, COLOR_RED_CARDINAL),
-      body: const NivelesResponse(),
-      floatingActionButton: const CreateNivelesPage(),
+      body: NivelesResponse(idCurso),
+      floatingActionButton: CreateNivelesPage(idCurso),
     );
   }
 }

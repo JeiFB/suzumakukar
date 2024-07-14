@@ -16,16 +16,6 @@ class SuzumakukarPuntajeUser extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const Text(
-                  'Puntajes',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Feather Bold',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    // color: textColor,
-                  ),
-                ),
                 const SizedBox(
                   height: 25,
                 ),

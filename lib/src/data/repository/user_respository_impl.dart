@@ -51,7 +51,7 @@ class UserRepositoryImpl implements UserRepository {
             contentType: 'image/png',
           ));
       String url = await uploadTask.ref.getDownloadURL();
-      final data = await _usersRef.doc(idUser).update({'img': url});
+      await _usersRef.doc(idUser).update({'img': url});
       return Success('Foto de perfil Actualizada');
     } on FirebaseException catch (e) {
       return Error(e.message ?? 'Error desconocido');

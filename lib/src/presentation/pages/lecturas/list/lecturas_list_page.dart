@@ -21,7 +21,10 @@ class LecturaListPage extends StatelessWidget {
                   color: COLOR_COFFE_BEAK_INNER,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, 'createlecturapage');
+                  Navigator.pushNamed(
+                    context,
+                    'createlecturapage',
+                  );
                 },
               )
             : null);

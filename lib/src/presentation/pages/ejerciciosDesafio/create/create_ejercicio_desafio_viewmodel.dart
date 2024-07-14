@@ -23,7 +23,6 @@ class CreateEjercicioDesafioViewModel extends ChangeNotifier {
   CreateEjercicioDesafioViewModel(this._ejerciciosDesafioUseCases);
 
   createEjercicio(String idDesafio) async {
-    // print('State: ${_state.toEjercicio().toJson()}');
     if (_state.isValid()) {
       _response = Loading();
       notifyListeners();
@@ -37,17 +36,10 @@ class CreateEjercicioDesafioViewModel extends ChangeNotifier {
 
       notifyListeners();
     }
-    // else {
-    //   print('campos vacios');
-    // }
   }
 
   Future<void> pickerImage() async {
     final ImagePicker picker = ImagePicker();
-    // final LostDataResponse response = await picker.retrieveLostData();
-    // if (response.isEmpty) {
-    //   return;
-    // }
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       _imageFile = File(image.path);

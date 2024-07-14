@@ -5,14 +5,14 @@ import 'package:suzumakukar/src/domain/models/ejerciciosmultiple.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_ejercicios_content.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/list/ejercicio_desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/update/ejercicio_update_desafio_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_desafio.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_ejercicio.dart';
 
 class EjerciciosDesafioContent extends StatefulWidget {
   final String idDesafio;
+  final int numberDesafio;
   final List<EjerciciosMultiple> ejerciciosList;
   const EjerciciosDesafioContent(this.idDesafio, this.ejerciciosList,
-      {super.key});
+      {required this.numberDesafio, super.key});
 
   @override
   State<EjerciciosDesafioContent> createState() => _EjerciciosDesafioContent();
@@ -28,15 +28,26 @@ class _EjerciciosDesafioContent extends State<EjerciciosDesafioContent> {
         Provider.of<EjercicioDesafioViewModel>(context);
     EjercicioUpdateDesafioViewModel vmUpdate =
         Provider.of<EjercicioUpdateDesafioViewModel>(context);
-    ObtenerIdDesafio idDesafio = Provider.of<ObtenerIdDesafio>(context);
     ObtenerIdEjercicio idEjercicio = Provider.of<ObtenerIdEjercicio>(context);
     return Scaffold(
         backgroundColor: bgColor,
         resizeToAvoidBottomInset: false,
-        body: SuzumakukarEjerciciosContent('ejercicioupdatedesafio', () {
-          vmUpdate.resetData();
-        }, () {
-          vm.deleteEjercicio(idDesafio.idDesafio, idEjercicio.idEjercicio);
-        }, shadowColor, themeColor, widget.ejerciciosList, true, false));
+        body: SuzumakukarEjerciciosContent(
+          'ejercicioupdatedesafio',
+          () {
+            vmUpdate.resetData();
+          },
+          () {
+            vm.deleteEjercicio(widget.idDesafio, idEjercicio.idEjercicio);
+          },
+          shadowColor,
+          themeColor,
+          widget.ejerciciosList,
+          true,
+          false,
+          widget.idDesafio,
+          '',
+          numberDesafio: widget.numberDesafio,
+        ));
   }
 }

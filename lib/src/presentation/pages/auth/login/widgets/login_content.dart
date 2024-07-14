@@ -16,13 +16,8 @@ class LoginContent extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: SuzumakukarTextField(
             onChanged: (value) {
-              // String uppercaseValue = value.toUpperCase();
               vm.changeUserName(value);
             },
-            // icon: Icons.account_circle,
-            // error: vm.state.userName.error,
-            // error: true,
-            // errorText: vm.state.userName.error,
             noEspacios: false,
             label: 'Nombre de usuario'),
       ),
@@ -32,10 +27,6 @@ class LoginContent extends StatelessWidget {
             onChanged: (value) {
               vm.changePassword(value);
             },
-            // error: true,
-            // errorText: vm.state.password.error,
-            // icon: Icons.lock,
-            // error: vm.state.password.error,
             obscureText: true,
             showIcon: true,
             label: 'Contraseña'),

@@ -10,22 +10,12 @@ class EjercicioDesafioViewModel extends ChangeNotifier {
   StreamSubscription<Resource<List<EjerciciosMultiple>>>? _subscription;
   Stream<Resource<List<EjerciciosMultiple>>>? _ejerciciosStream;
   Resource<List<EjerciciosMultiple>>? _currentEjercicios;
-  // final ObtenerIdDesafio _idDesafio;
-  // final ObtenerIdEjercicio _idEjercicio;
 
-  EjercicioDesafioViewModel(
-      // this._idDesafio, this._idEjercicio,
-      this._ejerciciosDesafioUseCases);
-
-  // Stream<Resource<List<EjerciciosMultiple>>> getEjercicios(String idDesafio) {
-  //   // notifyListeners();
-  //   return _ejerciciosDesafioUseCases.getEjercicioDesafio.launch(idDesafio);
-  // }
+  EjercicioDesafioViewModel(this._ejerciciosDesafioUseCases);
 
   Stream<Resource<List<EjerciciosMultiple>>> getEjercicios(String idDesafio) {
     _ejerciciosStream =
         _ejerciciosDesafioUseCases.getEjercicioDesafio.launch(idDesafio);
-    // _cursosUseC.getEjercicios.launch(idCurso, idEjercicios);
     _subscription = _ejerciciosStream!.listen((data) {
       _currentEjercicios = data;
       notifyListeners();

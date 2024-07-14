@@ -7,7 +7,6 @@ import 'package:suzumakukar/src/presentation/components/suzumakukar_appbar.dart'
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/list/ejercicio_desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/ejerciciosDesafio/list/widgets/ejercicios_desafio_content.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/data_resultados.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_desafio.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/rol_user.dart';
 
 class EjercicioDesafioPage extends StatelessWidget {
@@ -20,7 +19,7 @@ class EjercicioDesafioPage extends StatelessWidget {
     RolUser userRol = Provider.of<RolUser>(context);
     EjercicioDesafioViewModel vm =
         Provider.of<EjercicioDesafioViewModel>(context);
-    ObtenerIdDesafio idDesafio = Provider.of<ObtenerIdDesafio>(context);
+    final Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
     DataResultados resultados = Provider.of<DataResultados>(context);
     return Scaffold(
         appBar: SuzumakukarAppBar(const Icon(Icons.arrow_back_ios_new_rounded),
@@ -29,7 +28,7 @@ class EjercicioDesafioPage extends StatelessWidget {
           Navigator.pop(context);
         }, themeColor),
         body: StreamBuilder(
-          stream: vm.getEjercicios(idDesafio.idDesafio ?? ''),
+          stream: vm.getEjercicios(arguments['idDesafio']),
           builder: ((context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(
@@ -47,7 +46,10 @@ class EjercicioDesafioPage extends StatelessWidget {
                 response as Success<List<EjerciciosMultiple>>;
             return ejerciciosList.data.isNotEmpty
                 ? EjerciciosDesafioContent(
-                    idDesafio.idDesafio, ejerciciosList.data)
+                    arguments['idDesafio'],
+                    ejerciciosList.data,
+                    numberDesafio: arguments['numberDesafio'],
+                  )
                 : const Center(
                     child: Text(
                       'Sin desafios',
@@ -70,7 +72,8 @@ class EjercicioDesafioPage extends StatelessWidget {
                   color: COLOR_PURPLE,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, 'createjerciciodesafio');
+                  Navigator.pushNamed(context, 'createjerciciodesafio',
+                      arguments: arguments['idDesafio']);
                 },
               )
             : const SizedBox());

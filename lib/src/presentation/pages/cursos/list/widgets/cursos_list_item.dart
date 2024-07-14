@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:suzumakukar/src/domain/models/cursos.dart';
 import 'package:suzumakukar/src/colors/base_color.dart';
-// import 'package:suzumakukar/src/domain/models/user_data.dart';
-// import 'package:suzumakukar/src/domain/utils/resource.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_button.dart';
-import 'package:suzumakukar/src/presentation/components/suzumakukar_edit_delete_button.dart';
-import 'package:suzumakukar/src/presentation/components/suzumakukar_showmodalbottomsheet.dart';
 import 'package:suzumakukar/src/presentation/pages/cursos/list/cursos_list_viewmodel.dart';
-// import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_curso.dart';
 
 class CursoListItem extends StatelessWidget {
   final Cursos curso;
@@ -18,7 +11,6 @@ class CursoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ObtenerIdCurso idCurso = Provider.of<ObtenerIdCurso>(context);
     return Column(
       children: [
         Container(
@@ -57,35 +49,17 @@ class CursoListItem extends StatelessWidget {
                 child: SuzumakukarButton(
                   texto: 'CONTINUAR',
                   onPressed: () {
-                    Navigator.pushNamed(context, 'niveles',
-                        arguments: idCurso.setcursoSeleccionado(curso.id));
+                    Navigator.pushNamed(context, 'niveles', arguments: curso.id
+                        // idCurso.setcursoSeleccionado(curso.id)
+                        );
                   },
                   color: COLOR_WHITE,
                   textColor: COLOR_GREEN_PASTEL,
                 ),
               ),
-              SuzumakukarEditDeleteButton(
-                  () {
-                    showCustomBottomSheet(
-                      oneTextField: true,
-                      context: context,
-                      title: 'Editar curso',
-                      font: 'Feather Bold',
-                      textColor: Colors.black,
-                      buttonColor: Colors.blue,
-                      onPressedTextField: (value) {},
-                      onPressedTextFieldASecond: (value) {},
-                      onPressedButton: () {},
-                    );
-                  },
-                  COLOR_YELLOW_BEE,
-                  () {
-                    vm.deleteCurso(curso.id);
-                  },
-                  COLOR_RED_CARDINAL)
-              // : const SizedBox(
-              //     height: 15,
-              //   )
+              // SuzumakukarDelete(() {
+              //   vm.deleteCurso(curso.id);
+              // }, COLOR_YELLOW_BEE)
             ],
           ),
         )

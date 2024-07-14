@@ -5,7 +5,6 @@ import 'package:suzumakukar/src/presentation/components/suzumakukar_button.dart'
 import 'package:suzumakukar/src/presentation/pages/utils/data_resultados.dart';
 
 class ScreenResultadoNivelPage extends StatelessWidget {
-  // final
   const ScreenResultadoNivelPage({super.key});
 
   @override
@@ -31,7 +30,6 @@ class ScreenResultadoNivelPage extends StatelessWidget {
                         color: COLOR_MASK_GREEN,
                         fontSize: 30,
                         fontFamily: 'Feather Bold',
-                        // 'Feather Bold',
                         fontWeight: FontWeight.bold,
                       ),
                     ),

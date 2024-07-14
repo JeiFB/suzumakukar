@@ -102,7 +102,7 @@ class EjerciciosDesafioRepositoryImpl implements EjerciciosDesafiosRepository {
         'opciones': ejercicios.opciones,
         'respuesta': ejercicios.respuesta
       };
-      final data = await _ejerciciosRef
+      await _ejerciciosRef
           .doc(idDesafio)
           .collection('ejercicios')
           .doc(ejercicios.id)
@@ -132,7 +132,7 @@ class EjerciciosDesafioRepositoryImpl implements EjerciciosDesafiosRepository {
         'respuesta': ejercicios.respuesta,
         'img': url
       };
-      final data = await _ejerciciosRef
+      await _ejerciciosRef
           .doc(idDesafio)
           .collection('ejercicios')
           .doc(ejercicios.id)

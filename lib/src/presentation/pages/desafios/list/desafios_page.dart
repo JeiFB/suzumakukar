@@ -44,14 +44,8 @@ class DesafiosPage extends StatelessWidget {
                   ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               }
-              // if (!completedSnapshot.hasData) {
-              //   return const Center(
-              //       child: Text('No hay información',
-              //           style: TextStyle(color: Colors.white)));
-              // }
               final completedChallenges =
                   completedSnapshot.data as List<CompletedChallenges>;
-
               return GridView.builder(
                 itemCount: desafiosList.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

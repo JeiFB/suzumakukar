@@ -23,7 +23,6 @@ class HomePage extends StatelessWidget {
     final currentTab = [
       CursosListPage(_userData.rol),
       const DesafiosPage(),
-      // const TestListPage(),
       LecturaListPage(_userData.rol),
       ProfileInfoPage(_userData, vm),
     ];

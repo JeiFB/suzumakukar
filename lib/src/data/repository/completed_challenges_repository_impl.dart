@@ -32,6 +32,7 @@ class CompletedChallengesRepositoryImpl
       final data = _userRef
           .doc(idUser)
           .collection('desafioscompletados')
+          .orderBy('desafioNumber')
           .snapshots(includeMetadataChanges: true);
       final dataMap = data.map((document) => document.docs
           .map((desafio) => CompletedChallenges.fromJson(desafio.data()))

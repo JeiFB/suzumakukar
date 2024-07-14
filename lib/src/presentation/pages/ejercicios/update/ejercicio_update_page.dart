@@ -6,8 +6,6 @@ import 'package:suzumakukar/src/presentation/components/suzumakukar_appbar.dart'
 import 'package:suzumakukar/src/presentation/pages/ejercicios/update/ejercicio_update_response.dart';
 import 'package:suzumakukar/src/presentation/pages/ejercicios/update/ejercicio_update_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/ejercicios/update/widgets/ejercicio_update_content.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_curso.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_nivel.dart';
 
 class EjercicioUpdatePage extends StatelessWidget {
   const EjercicioUpdatePage({super.key});
@@ -16,12 +14,10 @@ class EjercicioUpdatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Color appBarColor = COLOR_BLUE_MACAW;
     Color textColorAppBarr = COLOR_WHITE;
-    ObtenerIdCurso idCurso = Provider.of<ObtenerIdCurso>(context);
-    ObtenerIdNivel idNivel = Provider.of<ObtenerIdNivel>(context);
     EjercicioUpdateViewModel vm =
         Provider.of<EjercicioUpdateViewModel>(context);
-    Ejercicios ejerciciosArg =
-        ModalRoute.of(context)?.settings.arguments as Ejercicios;
+    final Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       EjercicioUpdateResponse(context, vm);
     });
@@ -33,9 +29,9 @@ class EjercicioUpdatePage extends StatelessWidget {
         Navigator.pop(context);
       }, appBarColor),
       body: FutureBuilder(
-          future: vm.loadData(ejerciciosArg),
-          builder: (context, _) => EjercicioUpdateContent(
-              idCurso.idCurso, idNivel.idNivel, vm, ejerciciosArg)),
+          future: vm.loadData(arguments['lista'] as Ejercicios),
+          builder: (context, _) => EjercicioUpdateContent(arguments['idCurso'],
+              arguments['id'], vm, arguments['lista'] as Ejercicios)),
     );
   }
 }

@@ -14,6 +14,9 @@ class SuzumakukarPageViewBuilder extends StatefulWidget {
   final bool multipleOpcion;
   final bool mostrarEjecucion;
   final Color themeColor;
+  final String idCurso;
+  final String id;
+  final int numberDesafio;
   const SuzumakukarPageViewBuilder(
     this.paginaDestino,
     this.editReset,
@@ -22,6 +25,9 @@ class SuzumakukarPageViewBuilder extends StatefulWidget {
     this.ejerciciosList,
     this.multipleOpcion,
     this.mostrarEjecucion, {
+    this.id = '',
+    this.idCurso = '',
+    required this.numberDesafio,
     super.key,
   });
 
@@ -34,30 +40,6 @@ class _SuzumakukarPageViewBuilderState
     extends State<SuzumakukarPageViewBuilder> {
   final PageController _controller = PageController(initialPage: 0);
   String respuesta = '';
-
-  // late List<List<dynamic>> opcionesAleatorias;
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   actualizarOpcionesAleatorias();
-  // }
-
-  // @override
-  // void didUpdateWidget(SuzumakukarPageViewBuilder oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   if (widget.ejerciciosList != oldWidget.ejerciciosList) {
-  //     actualizarOpcionesAleatorias();
-  //   }
-  // }
-
-  // void actualizarOpcionesAleatorias() {
-  //   setState(() {
-  //     opcionesAleatorias = widget.ejerciciosList
-  //         .map((ejercicio) => List.from(ejercicio.opciones)..shuffle())
-  //         .toList();
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     Color cardColor = COLOR_WHITE;
@@ -151,6 +133,8 @@ class _SuzumakukarPageViewBuilderState
                                 mostrarEjecucion: widget.mostrarEjecucion,
                                 totalPreguntas: widget.ejerciciosList.length,
                                 controller: _controller,
+                                id: widget.id,
+                                numberDesafio: widget.numberDesafio,
                                 lista: widget.ejerciciosList,
                               ),
                               SuzumakukarEditDeleteButton(
@@ -158,8 +142,11 @@ class _SuzumakukarPageViewBuilderState
                                     widget.editReset();
                                     Navigator.pushNamed(
                                         context, widget.paginaDestino,
-                                        arguments:
-                                            widget.ejerciciosList[index]);
+                                        arguments: {
+                                          "idCurso": widget.idCurso,
+                                          "id": widget.id,
+                                          "lista": widget.ejerciciosList[index]
+                                        });
                                   },
                                   COLOR_BLACK_LAEL,
                                   () {

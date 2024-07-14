@@ -4,13 +4,11 @@ import 'package:suzumakukar/src/colors/base_color.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_button.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/data_resultados.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_desafio.dart';
 
 class ScreenResultadoDesafioContent extends StatelessWidget {
   final ScreenResultadoDesafioViewModel vm;
-  final ObtenerIdDesafio idDesafio;
-  // final
-  const ScreenResultadoDesafioContent(this.vm, this.idDesafio, {super.key});
+  final Map arguments;
+  const ScreenResultadoDesafioContent(this.vm, this.arguments, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +51,7 @@ class ScreenResultadoDesafioContent extends StatelessWidget {
                           const TextSpan(
                               text: 'Total de preguntas: ', style: TextStyle()),
                           TextSpan(
-                            text: '${resultados.totalPreguntas}',
+                            text: '${arguments['totalpreguntas']}',
                             style: const TextStyle(
                               color:
                                   COLOR_MASK_GREEN, // Color específico para '10'
@@ -76,7 +74,7 @@ class ScreenResultadoDesafioContent extends StatelessWidget {
                           const TextSpan(
                               text: 'Correctas: ', style: TextStyle()),
                           TextSpan(
-                            text: '${resultados.puntaje}',
+                            text: '${arguments['puntaje']}',
                             style: const TextStyle(
                               color:
                                   COLOR_MASK_GREEN, // Color específico para '10'
@@ -89,9 +87,9 @@ class ScreenResultadoDesafioContent extends StatelessWidget {
                     SuzumakukarButton(
                         texto: 'Finalizar',
                         onPressed: () {
-                          vm.idDesafio(idDesafio.idDesafio);
-                          vm.desafioNumber(idDesafio.desafioNumber);
-                          vm.notaDesafio(resultados.puntaje.toString());
+                          vm.idDesafio(arguments['id']);
+                          vm.desafioNumber(arguments['numerodesafio']);
+                          vm.notaDesafio(arguments['puntaje'].toString());
                           vm.addResults();
                           resultados.reset();
                           Navigator.pop(context);

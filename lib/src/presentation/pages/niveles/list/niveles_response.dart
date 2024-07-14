@@ -2,24 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:suzumakukar/src/domain/models/niveles.dart';
 import 'package:suzumakukar/src/domain/utils/resource.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_curso.dart';
 import 'package:suzumakukar/src/presentation/pages/niveles/list/niveles_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/niveles/widgets/niveles_item.dart';
 
-class NivelesResponse extends StatefulWidget {
-  const NivelesResponse({super.key});
+class NivelesResponse extends StatelessWidget {
+  final String idCurso;
+  const NivelesResponse(this.idCurso, {super.key});
 
-  @override
-  State<NivelesResponse> createState() => _NivelesResponseState();
-}
-
-class _NivelesResponseState extends State<NivelesResponse> {
   @override
   Widget build(BuildContext context) {
-    ObtenerIdCurso curso = Provider.of<ObtenerIdCurso>(context);
     NivelesViewModel vm = Provider.of<NivelesViewModel>(context);
     return StreamBuilder(
-      stream: vm.getNiveles(curso.idCurso ?? ''),
+      stream: vm.getNiveles(idCurso),
       builder: ((context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
@@ -45,7 +39,7 @@ class _NivelesResponseState extends State<NivelesResponse> {
             itemBuilder: (context, index) {
               final nivel = nivelesList.data[index];
               return nivelesList.data.isNotEmpty
-                  ? NivelesItem(curso.idCurso, vm, nivel)
+                  ? NivelesItem(idCurso, vm, nivel)
                   : const Center(
                       child: Text('No hay niveles'),
                     );

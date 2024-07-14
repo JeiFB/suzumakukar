@@ -35,7 +35,6 @@ class _CreateEjercicioItemState extends State<CreateEjercicioItem> {
     Color iconColorAgregar = COLOR_BLUE_MACAW;
     String font = 'DINNextRoundedLTPro';
     double fontSize = 18;
-    CreateEjercicioViewModel vm = widget.vm;
     return ListView(
       children: [
         Column(

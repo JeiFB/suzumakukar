@@ -16,10 +16,6 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RegisterViewmodel vm = Provider.of<RegisterViewmodel>(context);
-
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   RegisterResponse(context, vm);
-    // });
     return Scaffold(
       backgroundColor: COLOR_WHITE,
       appBar: SuzumakukarAppBar(const Icon(Icons.arrow_back_ios_sharp),

@@ -5,9 +5,7 @@ import 'package:suzumakukar/src/domain/models/ejercicios.dart';
 import 'package:suzumakukar/src/presentation/components/suzumakukar_ejercicios_content.dart';
 import 'package:suzumakukar/src/presentation/pages/ejercicios/list/ejercicios_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/ejercicios/update/ejercicio_update_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_curso.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_ejercicio.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_nivel.dart';
 
 class EjerciciosContent extends StatefulWidget {
   final String idCurso;
@@ -31,19 +29,29 @@ class _EjerciciosContent extends State<EjerciciosContent> {
     EjerciciosViewModel vm = Provider.of<EjerciciosViewModel>(context);
     EjercicioUpdateViewModel vmUpdate =
         Provider.of<EjercicioUpdateViewModel>(context);
-    ObtenerIdCurso idCurso = Provider.of<ObtenerIdCurso>(context);
-    ObtenerIdNivel idNivel = Provider.of<ObtenerIdNivel>(context);
     ObtenerIdEjercicio idEjercicio = Provider.of<ObtenerIdEjercicio>(context);
 
     return Scaffold(
         backgroundColor: bgColor,
         resizeToAvoidBottomInset: false,
-        body: SuzumakukarEjerciciosContent('updateejercicio', () {
-          vmUpdate.resetData();
-        }, () {
-          vm.deleteEjercicio(
-              idCurso.idCurso, idNivel.idNivel, idEjercicio.idEjercicio);
-        }, showColor, themeColor, widget.ejerciciosList, false, true));
+        body: SuzumakukarEjerciciosContent(
+          'updateejercicio',
+          () {
+            vmUpdate.resetData();
+          },
+          () {
+            vm.deleteEjercicio(
+                widget.idCurso, widget.idNivel, idEjercicio.idEjercicio);
+          },
+          showColor,
+          themeColor,
+          widget.ejerciciosList,
+          false,
+          true,
+          widget.idNivel,
+          widget.idCurso,
+          numberDesafio: 0,
+        ));
   }
 }
 // }

@@ -68,7 +68,7 @@ class EjerciciosTestRespositoryImpl implements EjerciciosTestRepository {
         'opciones': ejercicios.opciones,
         'respuesta': ejercicios.respuesta
       };
-      final data = await _ejerciciosRef
+      await _ejerciciosRef
           .doc(idTest)
           .collection('ejercicios')
           .doc(ejercicios.id)

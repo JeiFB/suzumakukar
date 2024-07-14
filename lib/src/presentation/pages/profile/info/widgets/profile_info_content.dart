@@ -9,7 +9,6 @@ import 'package:suzumakukar/src/presentation/components/suzumakukar_puntaje_user
 import 'package:suzumakukar/src/presentation/pages/home/home_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
-import 'dart:io';
 
 class ProfileInfoContent extends StatelessWidget {
   final UserData user;
@@ -160,13 +159,13 @@ class ProfileInfoContent extends StatelessWidget {
                                               completedChallenges)
                                           : const Center(
                                               child: Text(
-                                                'No haz hecho desafios',
+                                                'No Haz Realizado Desafios',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily: 'Feather Bold',
-                                                  fontSize: 30,
+                                                  fontSize: 18,
                                                   fontWeight: FontWeight.bold,
-                                                  // color: textColor,
+                                                  color: COLOR_YELLOW_BEE,
                                                 ),
                                               ),
                                             );

@@ -31,7 +31,6 @@ class SuzumakukarFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Color bgColor = COLOR_WHITE;
     Color textColor = COLOR_BLACK_LAEL;
-    String font = 'DINNextRoundedLTPro';
 
     RolUser rolUser = Provider.of<RolUser>(context);
 

@@ -4,7 +4,6 @@ import 'package:suzumakukar/src/domain/models/user_data.dart';
 import 'package:suzumakukar/src/domain/utils/resource.dart';
 import 'package:suzumakukar/src/presentation/pages/home/home_page.dart';
 import 'package:suzumakukar/src/presentation/pages/home/home_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/rol_user.dart';
 
 class HomeDataUser extends StatelessWidget {
   const HomeDataUser({super.key});

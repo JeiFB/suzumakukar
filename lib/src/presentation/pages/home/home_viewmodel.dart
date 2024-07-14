@@ -23,7 +23,6 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   updateImg() async {
-    // print('State: ${_state.toEjercicio().toJson()}');
     _response = Loading();
     notifyListeners();
     _response = await _usersUseCases.updateImg
@@ -33,10 +32,6 @@ class HomeViewModel extends ChangeNotifier {
 
   Future<void> pickerImage() async {
     final ImagePicker picker = ImagePicker();
-    // final LostDataResponse response = await picker.retrieveLostData();
-    // if (response.isEmpty) {
-    //   return;
-    // }
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       _imageFile = File(image.path);
@@ -56,20 +51,6 @@ class HomeViewModel extends ChangeNotifier {
   resetImg() {
     _imageFile = null;
   }
-
-  // isAdmin() async {
-  //   final data = await _authUseCases.isAdmin.launch(_id);
-  //   if (data) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  // Stream<Resource<UserData>> getUserById() {
-  //   final id = _authUseCases.getUser.userSession?.uid ?? '';
-  //   return _usersUseCase.getUserById.launch(id);
-  // }
 
   set currentIndex(int index) {
     _currentIndex = index;

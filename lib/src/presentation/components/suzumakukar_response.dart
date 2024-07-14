@@ -15,6 +15,8 @@ class SuzumakukarResponse extends StatefulWidget {
   final PageController controller;
   final List<dynamic> lista;
   final bool mostrarEjecucion;
+  final int numberDesafio;
+  final String id;
   const SuzumakukarResponse(
       {this.themeColor = Colors.blue,
       this.multipleOpcion = false,
@@ -23,6 +25,8 @@ class SuzumakukarResponse extends StatefulWidget {
       required this.totalPreguntas,
       required this.controller,
       required this.lista,
+      required this.numberDesafio,
+      this.id = '',
       super.key});
 
   @override
@@ -104,9 +108,17 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
                     )
                   : widget.multipleOpcion
                       ? Navigator.popAndPushNamed(
-                          context, 'screenresultadodesafiopage')
+                          context, 'screenresultadodesafiopage', arguments: {
+                          "id": widget.id,
+                          "numerodesafio": widget.numberDesafio,
+                          "totalpreguntas": resultados.totalPreguntas,
+                          "puntaje": resultados.puntaje
+                        })
                       : Navigator.popAndPushNamed(
-                          context, 'screenresultadopage');
+                          context, 'screenresultadopage', arguments: {
+                          "totalpreguntas": resultados.totalPreguntas,
+                          "puntaje": resultados.puntaje
+                        });
             } else {
               if (respuesta.isNotEmpty) {
                 if (intentos != 0) {
@@ -124,9 +136,19 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
                             )
                           : widget.multipleOpcion
                               ? Navigator.popAndPushNamed(
-                                  context, 'screenresultadodesafiopage')
+                                  context, 'screenresultadodesafiopage',
+                                  arguments: {
+                                      "id": widget.id,
+                                      "numerodesafio": widget.numberDesafio,
+                                      "totalpreguntas":
+                                          resultados.totalPreguntas,
+                                      "puntaje": resultados.puntaje
+                                    })
                               : Navigator.popAndPushNamed(
-                                  context, 'screenresultadopage');
+                                  context, 'screenresultadopage', arguments: {
+                                  "totalpreguntas": resultados.totalPreguntas,
+                                  "puntaje": resultados.puntaje
+                                });
                 } else {
                   setState(() {
                     sw = true;
@@ -141,9 +163,9 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
               : 'Finalizar',
         ),
       ),
-      // (widget.mostrarEjecucion && modal)
-      //     ? SuzumakukarButtonEjecucion(widget.index, widget.lista)
-      //     : const SizedBox(height: 15),
+      (widget.mostrarEjecucion && modal)
+          ? SuzumakukarButtonEjecucion(widget.index, widget.lista)
+          : const SizedBox(height: 15),
     ]);
   }
 }

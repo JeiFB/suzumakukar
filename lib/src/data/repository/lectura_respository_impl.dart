@@ -50,7 +50,7 @@ class LecturaRepositoryImpl implements LecturaRepository {
         'titulo': lectura.titulo,
         'texto': lectura.texto,
       };
-      final data = await _lecturaRef.doc(lectura.id).update(map);
+      await _lecturaRef.doc(lectura.id).update(map);
       return Success('El texto se ha actualizado correctamente');
     } on FirebaseException catch (e) {
       return Error(e.message ?? 'Error desconocido');

@@ -16,7 +16,6 @@ class ProfileInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // UpdateImgViewModel vm = Provider.of<UpdateImgViewModel>(context);
     ProfileInfoViewModel vmProfile = Provider.of<ProfileInfoViewModel>(context);
     GetNotasViewmodel vmNotas = Provider.of<GetNotasViewmodel>(context);
     RolUser rolUser = Provider.of<RolUser>(context);

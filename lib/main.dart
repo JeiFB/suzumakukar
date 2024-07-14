@@ -8,7 +8,6 @@ import 'package:suzumakukar/src/domain/use_cases/cursos/cursos_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/desafios/desafios_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/ejercicioDesafio/ejercicios_desafios_usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/lectura/lectura_usecases.dart';
-import 'package:suzumakukar/src/domain/use_cases/testExam/test_%20usecases.dart';
 import 'package:suzumakukar/src/domain/use_cases/users/users_usecases.dart';
 import 'package:suzumakukar/src/presentation/pages/auth/login/login_page.dart';
 import 'package:suzumakukar/src/presentation/pages/auth/login/login_viewmodel.dart';
@@ -32,15 +31,11 @@ import 'package:suzumakukar/src/presentation/pages/notas/get_notas_viewmodel.dar
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadoDesafio/screen_resultado__desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/resultados/resultadosNiveles/screen_resultado_nivel_page.dart';
-import 'package:suzumakukar/src/presentation/pages/testPage/create/create_test_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/testPage/list/test_list_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/profile/info/profile_info_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_ejercicio.dart';
 import 'package:suzumakukar/src/presentation/pages/utils/rol_user.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_curso.dart';
 import 'package:suzumakukar/src/presentation/pages/desafios/create/create_desafio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/desafios/list/desafios_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_desafio.dart';
 import 'package:suzumakukar/src/presentation/pages/ejercicios/create/create_ejercicio_page.dart';
 import 'package:suzumakukar/src/presentation/pages/ejercicios/create/create_ejercicio_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/ejercicios/list/ejercicios_page.dart';
@@ -54,8 +49,6 @@ import 'package:suzumakukar/src/presentation/pages/niveles/list/niveles_page.dar
 import 'package:suzumakukar/src/presentation/pages/cursos/list/cursos_list_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/home/home_viewmodel.dart';
 import 'package:suzumakukar/src/presentation/pages/niveles/list/niveles_viewmodel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_nivel.dart';
-import 'package:suzumakukar/src/presentation/pages/utils/obtener_id_test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -124,10 +117,6 @@ class MyApp extends StatelessWidget {
             create: (context) => GetNotasViewmodel(locator<UsersUseCases>(),
                 locator<CompletedChallengeUseCases>())),
         ChangeNotifierProvider(
-            create: (context) => TestListViewModel(locator<TestUseCases>())),
-        ChangeNotifierProvider(
-            create: (context) => CreateTestViewModel(locator<TestUseCases>())),
-        ChangeNotifierProvider(
             create: (context) =>
                 LecturaListViewModel(locator<LecturaUseCases>())),
         ChangeNotifierProvider(
@@ -140,16 +129,9 @@ class MyApp extends StatelessWidget {
             create: (context) => ScreenResultadoDesafioViewModel(
                 locator<CompletedChallengeUseCases>(),
                 locator<AuthUseCases>())),
-        // ChangeNotifierProvider(
-        //     create: (context) => UpdateImgViewModel(
-        //         locator<AuthUseCases>(), locator<UsersUseCases>())),
 
         //utils
         ChangeNotifierProvider(create: (context) => ObtenerIdEjercicio()),
-        ChangeNotifierProvider(create: (context) => ObtenerIdCurso()),
-        ChangeNotifierProvider(create: (context) => ObtenerIdNivel()),
-        ChangeNotifierProvider(create: (context) => ObtenerIdDesafio()),
-        ChangeNotifierProvider(create: (context) => ObtenerIdTest()),
         ChangeNotifierProvider(create: (context) => DataResultados()),
         ChangeNotifierProvider(create: (context) => RolUser()),
       ],

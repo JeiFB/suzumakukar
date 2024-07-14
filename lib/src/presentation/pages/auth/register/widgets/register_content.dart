@@ -28,10 +28,7 @@ class RegisterContent extends StatelessWidget {
           child: SuzumakukarTextField(
               label: 'Username',
               noEspacios: false,
-              // icon: Icons.person_2_outlined,
-              // error: vm.state.username.error,
               onChanged: (value) {
-                // String uppercaseValue = value.toUpperCase();
                 vm.changeUserName(value);
               }),
         ),
@@ -39,8 +36,6 @@ class RegisterContent extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: SuzumakukarTextField(
               label: 'Contraseña',
-              // icon: Icons.lock_rounded,
-              // error: vm.state.password.error,
               obscureText: true,
               showIcon: true,
               onChanged: (value) {
@@ -52,10 +47,6 @@ class RegisterContent extends StatelessWidget {
           child: SuzumakukarTextField(
               label: 'Confirmar contraseña',
               obscureText: true,
-              // icon: Icons.lock_rounded,
-
-              // error: true,
-              // errorText: vm.state.confirmpassword.error,
               onChanged: (value) {
                 vm.changeConfirmPassword(value);
               }),

@@ -14,6 +14,9 @@ class SuzumakukarEjerciciosContent extends StatelessWidget {
   final bool mostrarEjecucion;
   final Color showColor;
   final Color themeColor;
+  final String idCurso;
+  final String id;
+  final int numberDesafio;
   const SuzumakukarEjerciciosContent(
       this.paginaDestino,
       this.editReset,
@@ -23,7 +26,10 @@ class SuzumakukarEjerciciosContent extends StatelessWidget {
       this.ejerciciosList,
       this.multipleOpcion,
       this.mostrarEjecucion,
-      {super.key});
+      this.id,
+      this.idCurso,
+      {required this.numberDesafio,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +61,9 @@ class SuzumakukarEjerciciosContent extends StatelessWidget {
               ejerciciosList,
               multipleOpcion,
               mostrarEjecucion,
+              id: id,
+              idCurso: idCurso,
+              numberDesafio: numberDesafio,
             ),
           ),
         ),
