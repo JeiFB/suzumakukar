@@ -49,23 +49,24 @@ class SuzumakukarEjerciciosContent extends StatelessWidget {
         ),
         SuzumakukarProgressBar(themeColor, resultados.progreso),
         const SizedBox(height: 10),
-        SizedBox(
-          height: 790,
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            child: SuzumakukarPageViewBuilder(
-              paginaDestino,
-              editReset,
-              delete,
-              themeColor,
-              ejerciciosList,
-              multipleOpcion,
-              mostrarEjecucion,
-              id: id,
-              idCurso: idCurso,
-              numberDesafio: numberDesafio,
+        Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
+              child: SuzumakukarPageViewBuilder(
+                paginaDestino,
+                editReset,
+                delete,
+                themeColor,
+                ejerciciosList,
+                multipleOpcion,
+                mostrarEjecucion,
+                id: id,
+                idCurso: idCurso,
+                numberDesafio: numberDesafio,
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );

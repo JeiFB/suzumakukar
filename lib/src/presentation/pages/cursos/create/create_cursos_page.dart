@@ -30,7 +30,6 @@ class CreateCursosPage extends StatelessWidget {
         (value) {},
         () {
           vm.createCurso();
-          Navigator.pop(context);
         });
   }
 }

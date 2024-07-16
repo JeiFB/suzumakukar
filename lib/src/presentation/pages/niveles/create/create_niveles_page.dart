@@ -31,7 +31,7 @@ class CreateNivelesPage extends StatelessWidget {
         },
         () {
           vm.createNivel(idCurso);
-          Navigator.pop(context);
+          // Navigator.pop(context);
         });
   }
 }

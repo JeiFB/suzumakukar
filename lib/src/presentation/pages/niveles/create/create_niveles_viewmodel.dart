@@ -22,8 +22,6 @@ class CreateNivelesViewModel extends ChangeNotifier {
       _response =
           await _cursosUseCase.createNiveles.launch(_state.toNivel(), id);
       notifyListeners();
-    } else {
-      notifyListeners();
     }
   }
 

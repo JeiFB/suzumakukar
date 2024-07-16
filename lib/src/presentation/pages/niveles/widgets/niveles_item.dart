@@ -14,8 +14,8 @@ class NivelesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color themeColor = COLOR_RED_CARDINAL;
     Color textColor = COLOR_WHITE;
-    Color editColor = COLOR_YELLOW_BEE;
-    Color deleteColor = COLOR_GREEN_PASTEL;
+    Color editColor = COLOR_GREEN_PASTEL;
+    Color deleteColor = COLOR_YELLOW_BEE;
     return GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, 'ejercicios',

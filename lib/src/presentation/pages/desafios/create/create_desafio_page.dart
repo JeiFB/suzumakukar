@@ -25,7 +25,6 @@ class CreateDesafioPage extends StatelessWidget {
       vm.changeTema(value);
     }, () {
       vm.createDesafio();
-      Navigator.pop(context);
     });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:suzumakukar/src/presentation/components/suzumakukar_delete.dart';
 import 'package:suzumakukar/src/presentation/pages/desafios/list/desafios_viewmodel.dart';
 
 class SuzumakukarCard extends StatelessWidget {
@@ -19,7 +20,7 @@ class SuzumakukarCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double textSizePrymary = 30;
+    double textSizePrymary = 28;
     double textSizeSecundary = 18;
     String font = 'DINNextRoundedLTPro';
     return Padding(
@@ -28,26 +29,33 @@ class SuzumakukarCard extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           elevation: 2,
           color: themeColor,
-          child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListTile(
-                  title: Text(
-                    challengeNumber.toString(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: textSizePrymary,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: font,
-                        color: textColor),
-                  ),
-                  subtitle: Text(
-                    tema,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: textSizeSecundary,
-                        fontFamily: font,
-                        color: textColor),
-                  )))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: ListTile(
+                      title: Text(
+                        challengeNumber.toString(),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: textSizePrymary,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: font,
+                            color: textColor),
+                      ),
+                      subtitle: Text(
+                        tema,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: textSizeSecundary,
+                            fontFamily: font,
+                            fontWeight: FontWeight.bold,
+                            color: textColor),
+                      ))),
+              SuzumakukarDelete(onPressDelete, deleteColor)
+            ],
+          )),
     );
   }
 }

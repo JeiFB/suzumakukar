@@ -47,16 +47,16 @@ class _SuzumakukarPageViewBuilderState
     String fontPrimary = 'Feather Bold';
     RolUser rolUser = Provider.of<RolUser>(context);
     ObtenerIdEjercicio idEjercicio = Provider.of<ObtenerIdEjercicio>(context);
+
     return PageView.builder(
       physics: !rolUser.rolUser ? const NeverScrollableScrollPhysics() : null,
       controller: _controller,
       itemCount: widget.ejerciciosList.length,
       itemBuilder: (context, index) {
-        return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Card(
-              color: cardColor,
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 4),
+        return SingleChildScrollView(
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Card(
+                color: cardColor,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -80,6 +80,18 @@ class _SuzumakukarPageViewBuilderState
                           const SizedBox(
                             height: 10,
                           ),
+                          Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              widget.ejerciciosList[index].descripcion,
+                              style: TextStyle(
+                                  color: letterColor,
+                                  fontFamily: fontPrimary,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 15),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ),
                           widget.ejerciciosList[index].img != ''
                               ? Container(
                                   height: 260,
@@ -99,33 +111,12 @@ class _SuzumakukarPageViewBuilderState
                                   ),
                                 )
                               : const SizedBox(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Text(
-                              widget.ejerciciosList[index].descripcion,
-                              style: TextStyle(
-                                  color: letterColor,
-                                  fontFamily: fontPrimary,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 15),
-                              textAlign: TextAlign.justify,
-                            ),
-                          ),
                         ],
-                      ),
-                      const SizedBox(
-                        height: 8,
                       ),
                       Column(
                         children: [
                           Column(
                             children: [
-                              const SizedBox(
-                                height: 10,
-                              ),
                               SuzumakukarResponse(
                                 themeColor: widget.themeColor,
                                 multipleOpcion: widget.multipleOpcion,
@@ -159,9 +150,9 @@ class _SuzumakukarPageViewBuilderState
                           ),
                         ],
                       ),
-                    ]),
-              ))
-        ]);
+                    ]))
+          ]),
+        );
       },
     );
   }

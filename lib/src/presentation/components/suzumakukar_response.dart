@@ -61,7 +61,7 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
                     fontSize: 15),
               ),
             )
-          : const SizedBox(height: 30),
+          : const SizedBox(height: 10),
       widget.multipleOpcion
           ? SuzumakukarRespuestaOpciones(
               respuesta: respuesta,
@@ -125,6 +125,10 @@ class _SuzumakukarResponseState extends State<SuzumakukarResponse> {
                   --intentos;
                 }
                 if (intentos == 0) {
+                  if (!widget.mostrarEjecucion) {
+                    progreso = (++contador) / widget.totalPreguntas;
+                    resultados.newProgreso(progreso);
+                  }
                   widget.mostrarEjecucion
                       ? setState(() {
                           modal = true;

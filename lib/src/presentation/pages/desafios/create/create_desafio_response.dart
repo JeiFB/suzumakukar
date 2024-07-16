@@ -25,6 +25,7 @@ class CreateDesafioResponse {
           msg: success.data,
           timeInSecForIosWeb: 4,
           toastLength: Toast.LENGTH_LONG);
+      Navigator.pop(context);
       vm.resetResponse();
       vm.resetState();
     }

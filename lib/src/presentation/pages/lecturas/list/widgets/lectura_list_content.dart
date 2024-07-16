@@ -32,8 +32,9 @@ class LecturaListContect extends StatelessWidget {
             child: Text(
               lectura.titulo,
               style: const TextStyle(
-                fontFamily: 'Feather Bold',
-                fontSize: 18,
+                fontFamily: 'DINNextRoundedLTPro',
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
               ),
             ),
           ),
